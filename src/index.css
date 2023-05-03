@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.landing-logo {
+  width: 30vw;
+}
+
+.hide-on-mobile {
+  display: block!important;
+}
+
+.show-only-on-mobile {
+  display: none!important;
+}
+
+@media (max-width: 768px) {
+  .landing-logo {
+    width: 60vw;
+  }
+
+  .hide-on-mobile {
+    display: none!important;
+  }
+
+    .show-only-on-mobile {
+        display: block!important;
+    }
+}
