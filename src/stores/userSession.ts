@@ -46,4 +46,5 @@ class userSession {
     }
 }
 
-export default new userSession();
+const userSessionStore = new userSession();
+export default userSessionStore;

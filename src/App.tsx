@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import userSession from "./stores/userSession";
+import userSessionStore from "./stores/userSession";
 import {observer} from "mobx-react-lite";
 
 interface RouteEntry {
@@ -15,7 +15,7 @@ function App() {
     const [routes, setRoutes] = useState<RouteEntry[]>([]);
 
     useEffect(() => {
-        if (userSession.isLoggedIn) {
+        if (userSessionStore.isLoggedIn) {
             setRoutes([
                 //TODO: Add authorized routes here
             ]);
