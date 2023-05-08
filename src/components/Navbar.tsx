@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import userSession from "../stores/userSession";
 
 interface NavbarProps {
     handleLogin: () => void;
@@ -9,11 +10,11 @@ function Navbar(props: NavbarProps) {
     const [loggedIn, setLoggedIn] = React.useState(false);
 
     useEffect(() => {
-        // TODO: Check if user is logged in
+        setLoggedIn(userSession.isLoggedIn);
     }, [loggedIn]);
 
     const handleLogout = () => {
-        // TODO: Logout user
+        userSession.logout();
         setLoggedIn(false);
     };
 
