@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from '../logo.svg';
 import Navbar from "../components/Navbar";
+// @ts-ignore
+import Logo from "../logo.svg";
 
 function LandingPage() {
     const handleLogin = () => {
@@ -14,7 +16,9 @@ function LandingPage() {
     return (<>
         <Navbar handleLogin={handleLogin} handleSignup={handleSignup}/>
         <div className="container bs-primary-bg-subtle justify-content-center align-items-center text-center mt-5">
-            <img src={logo} className="img-fluid landing-logo" alt="Logo"/>
+            <div className="landing-logo">
+                <Logo/>
+            </div>
             <h1>Grama Check</h1>
             <p>Get your documents online</p>
             <div className="show-only-on-mobile">

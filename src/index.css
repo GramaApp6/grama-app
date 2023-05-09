@@ -13,6 +13,7 @@ code {
 }
 
 .landing-logo {
+  margin: auto;
   width: 30vw;
 }
 
@@ -26,6 +27,7 @@ code {
 
 @media (max-width: 768px) {
   .landing-logo {
+    margin: auto;
     width: 60vw;
   }
 
