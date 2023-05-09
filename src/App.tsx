@@ -4,6 +4,7 @@ import React from 'react';
 import {useAuthContext} from "@asgardeo/auth-react";
 import HomePage from "./pages/HomePage";
 import InfoPage from "./pages/InfoPage";
+import StatusPage from "./pages/StatusPage";
 
 function App() {
     const {state} = useAuthContext();
@@ -15,6 +16,7 @@ function App() {
                     <>
                         <Route path="/home" element={<HomePage/>}/>
                         <Route path="/info" element={<InfoPage/>}/>
+                        <Route path="/status" element={<StatusPage/>}/>
                     </>
                 }
             </Routes>
