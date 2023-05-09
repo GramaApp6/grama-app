@@ -1,7 +1,7 @@
 require("dotenv").config();
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const { findPort } = require("dev-server-ports");
+const {findPort} = require("dev-server-ports");
 
 const HOST = process.env.HOST || "localhost";
 const DEFAULT_PORT = process.env.PORT || 3000;
@@ -16,13 +16,13 @@ module.exports = async () => {
         devServer: {
             static: path.resolve(__dirname, "dist"),
             historyApiFallback: true,
-            server: https ? "https": "http",
+            server: https ? "https" : "http",
             host: HOST,
             allowedHosts: devServerHostCheckDisabled ? "all" : undefined,
             port: PORT,
         },
         devtool: "source-map",
-        entry: [ "./src/index.tsx" ],
+        entry: ["./src/index.tsx"],
         mode: "development",
         module: {
             rules: [
@@ -35,11 +35,11 @@ module.exports = async () => {
                 },
                 {
                     test: /\.css$/,
-                    use: [ "style-loader", "css-loader" ]
+                    use: ["style-loader", "css-loader"]
                 },
                 {
                     test: /\.(png|jpg|cur|gif|eot|ttf|woff|woff2)$/,
-                    use: [ "url-loader" ]
+                    use: ["url-loader"]
                 },
                 {
                     test: /\.html$/,
@@ -52,7 +52,7 @@ module.exports = async () => {
                 {
                     test: /\.js$/,
                     enforce: "pre",
-                    use: [ "source-map-loader" ]
+                    use: ["source-map-loader"]
                 },
                 {
                     test: /\.svg$/,
@@ -70,7 +70,7 @@ module.exports = async () => {
             })
         ],
         resolve: {
-            extensions: [ ".tsx", ".ts", ".js", ".json" ]
+            extensions: [".tsx", ".ts", ".js", ".json"]
         }
     });
 };

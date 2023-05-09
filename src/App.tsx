@@ -1,8 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
-import {observer} from "mobx-react-lite";
 import React from 'react';
-
 
 function App() {
     return (
@@ -14,4 +12,4 @@ function App() {
     );
 }
 
-export default observer(App);
+export default App;

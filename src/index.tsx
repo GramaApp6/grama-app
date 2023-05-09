@@ -4,11 +4,12 @@ import App from './App';
 import {AuthProvider, AuthReactConfig} from "@asgardeo/auth-react";
 import {render} from "react-dom";
 
-const authConfig:AuthReactConfig = {
-    baseUrl: "",
-    clientID: "",
-    signInRedirectURL: "https://localhost:3000",
-    signOutRedirectURL: "https://localhost:3000"
+const authConfig: AuthReactConfig = {
+    baseUrl: "https://api.asgardeo.io/t/ishad",
+    clientID: "4ht_tR9KQdry5ylCEcS8yMK7zeca",
+    signInRedirectURL: "http://localhost:3000",
+    signOutRedirectURL: "http://localhost:3000",
+    scope: [ "openid","profile" ]
 }
 
-render((<AuthProvider config={authConfig}><App /></AuthProvider>), document.getElementById("root"));
+render((<AuthProvider config={authConfig}><App/></AuthProvider>), document.getElementById("root"));
