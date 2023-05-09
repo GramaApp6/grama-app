@@ -1,16 +1,12 @@
-import React from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import  'bootstrap/dist/js/bootstrap.bundle.min.js';
+import React from 'react';
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<LandingPage/>}>
-                    <Route index element={<LandingPage/>}/>
-                </Route>
+                <Route path="/" element={<LandingPage/>}/>
             </Routes>
         </BrowserRouter>
     );

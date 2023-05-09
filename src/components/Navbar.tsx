@@ -1,38 +1,32 @@
 import React, {useEffect} from 'react';
+import {useAuthContext} from "@asgardeo/auth-react";
 
-interface NavbarProps {
-    handleLogin: () => void;
-    handleSignup: () => void;
-}
-
-function Navbar(props: NavbarProps) {
+function Navbar() {
     const [loggedIn, setLoggedIn] = React.useState(false);
+    const {signIn, signOut, state} = useAuthContext();
 
     useEffect(() => {
-        // TODO: Check if user is logged in
-    }, [loggedIn]);
-
-    const handleLogout = () => {
-        // TODO: Logout user
-        setLoggedIn(false);
-    };
+        setLoggedIn(state.isAuthenticated);
+    }, [state]);
 
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/"><b>Grama</b>Check</a>
-                <form className="d-flex">
+                <div className="d-flex">
                     {loggedIn ?
-                        <button className="btn btn-outline-success me-2" onClick={handleLogout}>Logout</button>
+                        <button className="btn btn-outline-success me-2" onClick={() => signOut()}>Logout</button>
                         :
                         <div className="hide-on-mobile">
-                            <button className="btn btn-outline-success me-2" onClick={props.handleLogin}>Login</button>
-                            <button className="btn btn-outline-success me-2" onClick={props.handleSignup}>
+                            <button className="btn btn-outline-success me-2" onClick={() => signIn()}>
+                                Login
+                            </button>
+                            <button className="btn btn-outline-success me-2">
                                 Signup
                             </button>
                         </div>
                     }
-                </form>
+                </div>
             </div>
         </nav>
     );
