@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
-// @ts-ignore
-import state from "../data/status.json";
 import { Card } from 'react-bootstrap';
 
 function StatusPage() {
-  const [status, setStatus] = useState(state.status);
+  const [status, setStatus] = useState("Pending");
+
+  useEffect(() => {
+      //TODO: Get status from backend
+      setStatus("Approved")
+  }, []);
   
   return (
     <>

@@ -1,21 +1,21 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
 import React from 'react';
-import {useAuthContext} from "@asgardeo/auth-react";
+import {SecureRoute, useAuthContext} from "@asgardeo/auth-react";
 import HomePage from "./pages/HomePage";
-import InfoPage from "./pages/InfoPage";
+import RequestCertificatePage from "./pages/RequestCertificatePage";
 import StatusPage from "./pages/StatusPage";
 
 function App() {
-    const {state} = useAuthContext();
+    const {signIn, state} = useAuthContext();
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
-                {state &&
+                {state.isAuthenticated &&
                     <>
-                        <Route path="/home" element={<HomePage/>}/>
-                        <Route path="/info" element={<InfoPage/>}/>
+                        <Route path="/home" element={ <HomePage/>}/>
+                        <Route path="/request-certificate" element={<RequestCertificatePage/>}/>
                         <Route path="/status" element={<StatusPage/>}/>
                     </>
                 }

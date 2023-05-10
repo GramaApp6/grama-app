@@ -2,10 +2,10 @@ import React from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
 
 
-function InfoPage() {
+function RequestCertificatePage() {
     return (<>
         <ProfileNavbar/>
-        <form>
+        <form className="container mt-5 limit-width">
             <div className="mb-3">
                 <label htmlFor="id" className="form-label">ID</label>
                 <input type="text" className="form-control" id="id"/>
@@ -19,10 +19,10 @@ function InfoPage() {
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
             <div className="d-flex justify-content-center">
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary form-control">Submit</button>
             </div>
         </form>
     </>);
 }
 
-export default InfoPage;
+export default RequestCertificatePage;
