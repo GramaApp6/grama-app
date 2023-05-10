@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
 
 
-function RequestCertificatePage() {
+function RequestPage() {
     return (<>
         <ProfileNavbar/>
         <form className="container mt-5 limit-width">
@@ -19,10 +19,9 @@ function RequestCertificatePage() {
                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
             <div className="d-flex justify-content-center">
-                <button type="submit" className="btn btn-primary form-control">Submit</button>
+                <button type="submit" className="btn btn-outline-success form-control">Submit</button>
             </div>
         </form>
     </>);
 }
-
-export default RequestCertificatePage;
+export default RequestPage;
