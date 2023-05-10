@@ -1,7 +1,10 @@
-require("dotenv").config();
+require("dotenv").config({
+    path: ".env"
+});
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const {findPort} = require("dev-server-ports");
+const webpack = require("webpack");
 
 const HOST = process.env.HOST || "localhost";
 const DEFAULT_PORT = process.env.PORT || 3000;
@@ -11,7 +14,6 @@ const https = process.env.HTTPS === "true";
 
 module.exports = async () => {
     const PORT = await findPort(DEFAULT_PORT, HOST, false);
-
     return ({
         devServer: {
             static: path.resolve(__dirname, "dist"),
@@ -77,6 +79,14 @@ module.exports = async () => {
         plugins: [
             new HtmlWebpackPlugin({
                 template: "./src/index.html"
+            }),
+            new webpack.DefinePlugin({
+                'process.env': {
+                    'ASGARDEO_BASE_URL': `"${process.env.ASGARDEO_BASE_URL}"`,
+                    'ASGARDEO_CLIENT_ID': `"${process.env.ASGARDEO_CLIENT_ID}"`,
+                    'ASGARDEO_SIGN_IN_REDIRECT_URL': `"${process.env.ASGARDEO_SIGN_IN_REDIRECT_URL}"`,
+                    'ASGARDEO_SIGN_OUT_REDIRECT_URL': `"${process.env.ASGARDEO_SIGN_OUT_REDIRECT_URL}"`,
+                }
             })
         ],
         resolve: {
