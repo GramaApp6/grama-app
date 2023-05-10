@@ -1,7 +1,8 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import LandingPage from "./pages/LandingPage";
 import React from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {useAuthContext} from "@asgardeo/auth-react";
+
+import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
 import StatusPage from "./pages/StatusPage";

@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from "../components/Navbar";
 import {useAuthContext} from "@asgardeo/auth-react";
-// @ts-ignore
-import Logo from "../logo.svg";
+import logo from "../assets/logo.svg";
 
 function LandingPage() {
     const {signIn, state} = useAuthContext();
@@ -16,7 +15,7 @@ function LandingPage() {
         <Navbar/>
         <div className="container bs-primary-bg-subtle justify-content-center align-items-center text-center mt-5">
             <div className="landing-logo">
-                <Logo/>
+                <img src={logo} alt="logo" className="img-fluid"/>
             </div>
             <h1>Grama Check</h1>
             <p>Get your documents online</p>
