@@ -19,10 +19,7 @@ function Navbar() {
                         :
                         <div className="hide-on-mobile">
                             <button className="btn btn-outline-success me-2" onClick={() => signIn()}>
-                                Login
-                            </button>
-                            <button className="btn btn-outline-success me-2">
-                                Signup
+                                Login / Sign Up
                             </button>
                         </div>
                     }

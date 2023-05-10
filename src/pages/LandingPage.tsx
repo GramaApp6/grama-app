@@ -6,11 +6,6 @@ import logo from "../assets/logo.svg";
 function LandingPage() {
     const {signIn, state} = useAuthContext();
 
-
-    const handleSignup = () => {
-        console.log("Signup");
-    }
-
     return (<>
         <Navbar/>
         <div className="container bs-primary-bg-subtle justify-content-center align-items-center text-center mt-5">
@@ -34,8 +29,7 @@ function LandingPage() {
                         </div>
                         :
                         <div className="d-flex flex-column p-3">
-                            <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>Login</button>
-                            <button className="btn btn-outline-success mb-3" onClick={handleSignup}>Signup</button>
+                            <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>Login / Sign Up</button>
                         </div>
                 }
 
