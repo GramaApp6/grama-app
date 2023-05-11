@@ -11,6 +11,7 @@ import Page404 from "./pages/Page404";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import Page500 from "./pages/Page500.tsx";
 import {UserInfo} from "./types";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     const {state, getBasicUserInfo} = useAuthContext();
