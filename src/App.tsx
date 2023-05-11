@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
 import StatusPage from "./pages/StatusPage";
 import Page404 from "./pages/Page404";
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
     const {state} = useAuthContext();
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/home" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/status" element={<StatusPage/>}/>
+                        <Route path="/profile" element={<ProfilePage/>}/>
                     </>
                 }
                 <Route path="*" element={<Page404/>}/>

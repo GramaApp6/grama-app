@@ -12,7 +12,7 @@ const authConfig: AuthReactConfig = {
     clientID: import.meta.env.VITE_ASGARDEO_CLIENT_ID,
     signInRedirectURL: import.meta.env.VITE_ASGARDEO_SIGN_IN_REDIRECT_URL,
     signOutRedirectURL: import.meta.env.VITE_ASGARDEO_SIGN_OUT_REDIRECT_URL,
-    scope: [ "openid","profile" ]
+    scope: ["openid" ,"email" ,"groups" ,"profile"]
 }
 
 render((<AuthProvider config={authConfig}><App/></AuthProvider>), document.getElementById("root"));

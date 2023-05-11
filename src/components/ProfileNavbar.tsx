@@ -3,7 +3,7 @@ function ProfileNavbar() {
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand" href="/profile">
                     <i className="fa fa-user-circle" style={{fontSize: "3rem"}}></i>
                 </a>
                 <div>
