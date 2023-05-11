@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build && echo /*  /index.html  200 > dist/_redirects",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -15,7 +15,6 @@
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"
   },

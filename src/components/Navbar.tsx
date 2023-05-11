@@ -15,16 +15,13 @@ function Navbar() {
                 <a className="navbar-brand" href="/"><b>Grama</b>Check</a>
                 <div className="d-flex">
                     {loggedIn ?
-                        <button className="btn btn-outline-success me-2" onClick={() => signOut()}>Logout</button>
+                        <button className="btn btn-outline-success me-2 hide-on-mobile" onClick={() => signOut()}>
+                            Logout
+                        </button>
                         :
-                        <div className="hide-on-mobile">
-                            <button className="btn btn-outline-success me-2" onClick={() => signIn()}>
-                                Login
-                            </button>
-                            <button className="btn btn-outline-success me-2">
-                                Signup
-                            </button>
-                        </div>
+                        <button className="btn btn-outline-success me-2 hide-on-mobile" onClick={() => signIn()}>
+                            Login / Sign Up
+                        </button>
                     }
                 </div>
             </div>
