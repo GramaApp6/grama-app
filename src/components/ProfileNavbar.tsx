@@ -6,7 +6,7 @@ function ProfileNavbar() {
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/home">
+                <a className="navbar-brand" href="/">
                     <b>Grama</b>Check
                 </a>
                 <div className="d-flex">

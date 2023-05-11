@@ -1,7 +1,6 @@
 import React from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
 
-
 function RequestPage() {
     return (<>
         <ProfileNavbar/>
