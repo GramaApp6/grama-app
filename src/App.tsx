@@ -10,6 +10,7 @@ import RequestPage from "./pages/RequestPage";
 import SentRequestsPage from "./pages/SentRequestsPage.tsx";
 import Page404 from "./pages/Page404";
 import AdminPage from "./pages/AdminPage";
+import UserDataPage from "./pages/UserDataPage";
 
 function App() {
     const {state} = useAuthContext();
@@ -29,6 +30,7 @@ function App() {
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/requests" element={<SentRequestsPage/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
+                        <Route path="/userdata" element={<UserDataPage/>}/>
                     </>
                     :
                     <Route path="/" element={<LandingPage/>}/>
