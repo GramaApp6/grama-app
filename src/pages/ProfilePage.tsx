@@ -12,10 +12,10 @@ function ProfilePage() {
     const [user_attribute, setAttributeList] = useState([]);
 
     useEffect(() => {
-        getBasicUserInfo().then((response) => {
+        getBasicUserInfo().then((response: any) => {
             setAttributeList(response);
             console.log(response);
-        }).catch((error) => {
+        }).catch((error: any) => {
             console.error(error);
         });
     }, []);
