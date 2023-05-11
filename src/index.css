@@ -45,7 +45,7 @@ code {
     display: none!important;
   }
 
-    .show-only-on-mobile {
-        display: block!important;
-    }
+  .show-only-on-mobile {
+      display: block!important;
+  }
 }

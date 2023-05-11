@@ -13,13 +13,13 @@ function Navbar() {
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/"><b>Grama</b>Check</a>
-                <div className="d-flex hide-on-mobile">
+                <div className="d-flex">
                     {loggedIn ?
-                        <button className="btn btn-outline-success me-2" onClick={() => signOut()}>
+                        <button className="btn btn-outline-success me-2 hide-on-mobile" onClick={() => signOut()}>
                             Logout
                         </button>
                         :
-                        <button className="btn btn-outline-success me-2" onClick={() => signIn()}>
+                        <button className="btn btn-outline-success me-2 hide-on-mobile" onClick={() => signIn()}>
                             Login / Sign Up
                         </button>
                     }
