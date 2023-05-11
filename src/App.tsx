@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
 import SentRequestsPage from "./pages/SentRequestsPage.tsx";
 import Page404 from "./pages/Page404";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     const {state} = useAuthContext();
