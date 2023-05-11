@@ -12,7 +12,7 @@ function ProfilePage() {
     const [user_attribute, setAttributeList] = useState([]);
 
     useEffect(() => {
-        getBasicUserInfo().then((response: any) => {
+        getBasicUserInfo().then((response: Record<string, string>) => {
             setAttributeList(response);
             console.log(response);
         }).catch((error: any) => {
