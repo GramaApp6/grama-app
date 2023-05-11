@@ -28,6 +28,7 @@ function App() {
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/requests" element={<SentRequestsPage/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
                     </>
                     :
                     <Route path="/" element={<LandingPage/>}/>
