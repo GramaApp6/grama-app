@@ -8,9 +8,9 @@ export enum Status{
 export interface GramaCertificate {
     reason: string;
     status: Status;
-    certificateNumber: string;
+    certificateNumber?: string;
     requestDate: Date;
-    issuedDate: Date;
+    issuedDate?: Date;
     validationStatus : {
         identity: Status;
         address: Status;

@@ -6,7 +6,7 @@ import {Status} from "../types/GramaCertificate.ts";
 import SentRequestMinimalCard from "../components/SentRequestMinimalCard.tsx";
 
 function SentRequestsPage() {
-    const [requests, setRequests] = useState<GramaCertificate>([]);
+    const [requests, setRequests] = useState<GramaCertificate[]>([]);
 
     useEffect(() => {
         //TODO: Get requests from backend
@@ -14,23 +14,34 @@ function SentRequestsPage() {
             {
                 reason: "Reason 1",
                 status: Status.NEW,
-                certificateNumber: null,
-                issuedDate: null,
-                requestDate: new Date("2021-08-01")
+                requestDate: new Date("2021-08-01"),
+                validationStatus:{
+                    address: Status.PASSED,
+                    police: Status.PASSED,
+                    identity: Status.NEW
+                }
             },
             {
                 reason: "Reason 2",
-                status: Status.FAILED,
+                status: Status.PASSED,
                 certificateNumber: "123456788",
                 issuedDate: new Date("2022-10-01"),
-                requestDate: new Date("2022-09-01")
+                requestDate: new Date("2022-09-01"),
+                validationStatus:{
+                    address: Status.PASSED,
+                    police: Status.PASSED,
+                    identity: Status.NEW
+                }
             },
             {
                 reason: "Reason 3",
-                status: Status.PASSED,
-                certificateNumber: null,
-                issuedDate: null,
+                status: Status.FAILED,
                 requestDate: new Date("2023-04-07"),
+                validationStatus:{
+                    address: Status.PASSED,
+                    police: Status.PASSED,
+                    identity: Status.NEW
+                }
             }
         ];
         setRequests(data);
@@ -42,7 +53,7 @@ function SentRequestsPage() {
             <ProfileNavbar/>
             <div className="d-flex limit-width flex-column">
                 {
-                    requests.map((request: GramaCertificate, index) => (
+                    requests.map((request: GramaCertificate, index:number) => (
                         <SentRequestMinimalCard key={index} details={request} />
                     ))
                 }

@@ -20,21 +20,22 @@ function RequestPage() {
     }, []);
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const dataElement = e.target as HTMLFormElement;
         const data:GramaCertificateRequest = {
-            firstName: e.target.firstName.value,
-            lastName: e.target.lastName.value,
-            nic: e.target.nic.value,
-            phoneNumber: e.target.phoneNumber.value,
-            gramaDivision: e.target.gramaDivision.value,
+            firstName: dataElement.firstName.value,
+            lastName: dataElement.lastName.value,
+            nic: dataElement.nic.value,
+            mobileNumber: dataElement.phoneNumber.value,
+            gramaDivision: dataElement.gramaDivision.value,
             address: {
-                houseNumber: e.target.houseNumber.value,
-                streetName: e.target.streetName.value,
-                suburb: e.target.suburb.value,
-                city: e.target.city.value,
+                houseNumber: dataElement.houseNumber.value,
+                streetName: dataElement.streetName.value,
+                suburb: dataElement.suburb.value,
+                city: dataElement.city.value,
             },
-            reason: e.target.reason.value
+            reason: dataElement.reason.value
         }
         //TODO: Send data to backend
         console.log("Submitted", data);
