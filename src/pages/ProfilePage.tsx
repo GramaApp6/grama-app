@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ProfileNavbar from "../components/ProfileNavbar";
-import { Container, Row, Col, Image } from "react-bootstrap";
-import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/Form";
 import { useAuthContext } from "@asgardeo/auth-react";
 
 function ProfilePage() {
@@ -10,95 +7,98 @@ function ProfilePage() {
   const [user_attribute, setAttributeList] = useState<Record<string, string>>();
 
   useEffect(() => {
-    getBasicUserInfo().then((response) => {
-      setAttributeList(response);
-      console.log(response);
-    }).catch((error) => {
-      console.error(error);
-    });
+    getBasicUserInfo()
+      .then((response) => {
+        setAttributeList(response);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   return (
     <>
       <ProfileNavbar />
 
-      <Container>
-        <Row className="justify-content-md-center mb-3">
-          <Col md="auto">
+      <div className="container">
+        <div className="row justify-content-md-center mb-3">
+          <div className="col-md-auto">
             {user_attribute && (
-              <Image
+              <img
                 src={user_attribute["picture"]}
-                roundedCircle
-                width={200} // set the width to 150 pixels
-                height={200} // set the height to 150 pixels
+                className="rounded-circle"
+                width="200" // set the width to 200 pixels
+                height="200" // set the height to 200 pixels
               />
             )}
-          </Col>
-        </Row>
-        <Row className="mt-3 justify-content-md-center">
-          <Col md="auto">
-            {user_attribute && (
-              <h1>{user_attribute["displayName"]}</h1>
-            )}
-          </Col>
-        </Row>
-        <ListGroup>
-          <ListGroup.Item>
-            <Row>
-              <Col>
-                <h4 className="text-muted">Full name : </h4>
-              </Col>
-              <Col>
+          </div>
+        </div>
+        <div className="row mt-3 justify-content-md-center">
+          <div className="col-md-auto">
+            {user_attribute && <h1>{user_attribute["displayName"]}</h1>}
+          </div>
+        </div>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <div className="row">
+              <div className="col">
+                <h4 className="text-muted">Full name </h4>
+              </div>
+              <div className="col">
                 {user_attribute && (
-                  <Form.Control
+                  <input
                     type="text"
+                    className="form-control"
                     placeholder={user_attribute["name"]}
                     aria-label="Disabled input example"
                     disabled
                     readOnly
                   />
                 )}
-              </Col>
-            </Row>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Row>
-              <Col>
-                <h4 className="text-muted">Email : </h4>
-              </Col>
-              <Col>
+              </div>
+            </div>
+          </li>
+          <li className="list-group-item">
+            <div className="row">
+              <div className="col">
+                <h4 className="text-muted">Email </h4>
+              </div>
+              <div className="col">
                 {user_attribute && (
-                  <Form.Control
+                  <input
                     type="text"
+                    className="form-control"
                     placeholder={user_attribute["email"]}
                     aria-label="Disabled input example"
                     disabled
                     readOnly
                   />
                 )}
-              </Col>
-            </Row>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Row>
-              <Col>
-                <h4 className="text-muted">Role : </h4>
-              </Col>
-              <Col>
+              </div>
+            </div>
+          </li>
+          <li className="list-group-item">
+            <div className="row">
+              <div className="col">
+                <h4 className="text-muted">Role </h4>
+              </div>
+              <div className="col">
                 {user_attribute && (
-                  <Form.Control
+                  <input
                     type="text"
+                    className="form-control"
                     placeholder={user_attribute["groups"]}
                     aria-label="Disabled input example"
                     disabled
                     readOnly
                   />
                 )}
-              </Col>
-            </Row>
-          </ListGroup.Item>
-        </ListGroup>
-      </Container>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }
