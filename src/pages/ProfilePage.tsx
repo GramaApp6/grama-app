@@ -1,10 +1,24 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 import ProfileNavbar from "../components/ProfileNavbar";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
+import {useAuthContext} from "@asgardeo/auth-react";
 
 function ProfilePage() {
+
+    const { getBasicUserInfo } = useAuthContext();
+    const [user_attribute, setAttributeList] = useState([]);
+
+    useEffect(() => {
+        getBasicUserInfo().then((response) => {
+            setAttributeList(response);
+            console.log(response);
+        }).catch((error) => {
+            //console.error(error);
+        });
+    }, []);
+
   return (
     <>
       <ProfileNavbar />
@@ -13,7 +27,7 @@ function ProfilePage() {
         <Row className="justify-content-md-center mb-3">
           <Col md="auto">
             <Image
-              src="https://lh3.googleusercontent.com/a-/ACB-R5TVvAuWG4_G3mhfXP7Qcx86PL0T8sCazTywSivf=s88-w88-h88-c-k-no"
+              src={user_attribute["picture"]}
               roundedCircle
               width={200} // set the width to 150 pixels
               height={200} // set the height to 150 pixels
@@ -22,7 +36,7 @@ function ProfilePage() {
         </Row>
         <Row className="mt-3 justify-content-md-center">
           <Col md="auto">
-            <h1>User name</h1>
+            <h1>{user_attribute["displayName"]}</h1>
           </Col>
         </Row>
         <ListGroup>
@@ -34,7 +48,7 @@ function ProfilePage() {
               <Col>
               <Form.Control
                 type="text"
-                placeholder="Ashokkumar"
+                placeholder={user_attribute["name"]}
                 aria-label="Disabled input example"
                 disabled
                 readOnly
@@ -50,7 +64,7 @@ function ProfilePage() {
               <Col>
               <Form.Control
                 type="text"
-                placeholder="ahokkumar@wso2.com"
+                placeholder={user_attribute["email"]}
                 aria-label="Disabled input example"
                 disabled
                 readOnly
@@ -66,7 +80,7 @@ function ProfilePage() {
               <Col>
               <Form.Control
                 type="text"
-                placeholder="user"
+                placeholder={user_attribute["groups"]}
                 aria-label="Disabled input example"
                 disabled
                 readOnly
