@@ -1,30 +1,35 @@
 import React from 'react';
+import Notifications from "./Notifications.tsx";
+import OffCanvas from "./OffCanvas.tsx";
+
 function ProfileNavbar() {
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">
-                    <i className="fa fa-user-circle" style={{fontSize: "3rem"}}></i>
+                <a className="navbar-brand" href="/home">
+                    <b>Grama</b>Check
                 </a>
-                <div>
-                    <ul className="me-auto mb-2 mb-lg-0 list-unstyled">
+                <div className="d-flex">
+                    <ul className="list-unstyled me-3">
                         <li className="nav-item">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
+                            <button className=" navbar-toggler nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                 <i className="fa fa-bell" style={{fontSize: "2rem"}}></i>
-                            </a>
+                            </button>
                             <ul className="dropdown-menu dropdown-menu-end">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                <Notifications/>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
-                                <li className="text-center">
-                                    <button className="btn btn-outline-success">Login</button>
+                                <li>
+                                    <a className="dropdown-item" href="/notifications">
+                                        Show all notifications
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
+                    <OffCanvas/>
                 </div>
             </div>
         </nav>

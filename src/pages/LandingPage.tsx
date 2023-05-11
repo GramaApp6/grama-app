@@ -29,7 +29,9 @@ function LandingPage() {
                         </div>
                         :
                         <div className="d-flex flex-column p-3">
-                            <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>Login / Sign Up</button>
+                            <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>
+                                Login / Sign Up
+                            </button>
                         </div>
                 }
 
