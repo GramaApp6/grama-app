@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {useAuthContext} from "@asgardeo/auth-react";
-
+import ProfilePage from './pages/ProfilePage';
 import './App.css';
 
 import LandingPage from "./pages/LandingPage";
@@ -27,6 +27,7 @@ function App() {
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/requests" element={<SentRequestsPage/>}/>
+                        <Route path="/profile" element={<ProfilePage/>}/>
                     </>
                     :
                     <Route path="/" element={<LandingPage/>}/>
