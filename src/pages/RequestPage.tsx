@@ -3,15 +3,15 @@ import React, {useState} from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
 import InputField from "../components/form/InputField.tsx";
 import TextArea from "../components/form/TextArea.tsx";
-import DropDown from "../components/form/DropDown.tsx";
+import DropDown, {Option} from "../components/form/DropDown.tsx";
 import {GramaCertificateRequest} from "../types";
 
 
 function RequestPage() {
-    const [gramaDivisions, setGramaDivisions] = useState([]);
+    const [gramaDivisions, setGramaDivisions] = useState<Option[]>([]);
     React.useEffect(() => {
         //TODO: Get grama divisions from backend
-        const data = [
+        const data:Option[] = [
             {key: "1", value: "Grama Division 1"},
             {key: "2", value: "Grama Division 2"},
             {key: "3", value: "Grama Division 3"},

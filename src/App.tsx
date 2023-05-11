@@ -7,7 +7,7 @@ import './App.css';
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
-import StatusPage from "./pages/StatusPage";
+import SentRequestsPage from "./pages/SentRequestsPage.tsx";
 import Page404 from "./pages/Page404";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
                     <>
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
-                        <Route path="/status" element={<StatusPage/>}/>
+                        <Route path="/requests" element={<SentRequestsPage/>}/>
                     </>
                     :
                     <Route path="/" element={<LandingPage/>}/>

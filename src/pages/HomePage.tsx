@@ -13,7 +13,7 @@ function HomePage() {
                         Apply for Grama Cert
                     </div>
                 </a>
-                <a className="btn btn-outline-success m-3" href="/status">
+                <a className="btn btn-outline-success m-3" href="/requests">
                     <div className="home-page-btn">
                         <i className="fa fa-check-circle m-2" style={{fontSize: "4rem"}}></i>
                         <br/>
