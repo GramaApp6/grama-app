@@ -1,4 +1,5 @@
-import {React,useEffect,useState} from "react";
+import React from "react";
+import {useEffect,useState} from "react";
 import ProfileNavbar from "../components/ProfileNavbar";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -15,7 +16,7 @@ function ProfilePage() {
             setAttributeList(response);
             console.log(response);
         }).catch((error) => {
-            //console.error(error);
+            console.error(error);
         });
     }, []);
 
