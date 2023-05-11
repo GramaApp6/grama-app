@@ -20,6 +20,7 @@ function App() {
                         <Route path="/home" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/status" element={<StatusPage/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
                     </>
                 }
                 <Route path="*" element={<Page404/>}/>
