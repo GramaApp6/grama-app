@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
 import StatusPage from "./pages/StatusPage";
 import Page404 from "./pages/Page404";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     const {state} = useAuthContext();
