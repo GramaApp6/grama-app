@@ -66,3 +66,8 @@
         content: '';
     }
 }
+
+fieldset{
+    border: solid 1px #ccc !important;
+    border-radius: 5px;
+}

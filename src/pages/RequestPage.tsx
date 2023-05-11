@@ -1,21 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import ProfileNavbar from "../components/ProfileNavbar";
 import InputField from "../components/form/InputField.tsx";
 import TextArea from "../components/form/TextArea.tsx";
 import DropDown from "../components/form/DropDown.tsx";
+import {GramaCertificateRequest} from "../types";
 
-interface GramaCertificateRequest {
-    firstName: string;
-    lastName: string;
-    nic: string;
-    phoneNumber: string;
-    gramaDivision: string;
-    address: string;
-}
 
 function RequestPage() {
-    const [gramaDivisions, setGramaDivisions] = React.useState([]);
+    const [gramaDivisions, setGramaDivisions] = useState([]);
     React.useEffect(() => {
         //TODO: Get grama divisions from backend
         const data = [
@@ -35,7 +28,13 @@ function RequestPage() {
             nic: e.target.nic.value,
             phoneNumber: e.target.phoneNumber.value,
             gramaDivision: e.target.gramaDivision.value,
-            address: e.target.address.value
+            address: {
+                houseNumber: e.target.houseNumber.value,
+                streetName: e.target.streetName.value,
+                suburb: e.target.suburb.value,
+                city: e.target.city.value,
+            },
+            reason: e.target.reason.value
         }
         //TODO: Send data to backend
         console.log("Submitted", data);
@@ -48,7 +47,14 @@ function RequestPage() {
             <InputField label="NIC" id="nic" type="text"/>
             <InputField label="Phone Number" id="phoneNumber" type="tel"/>
             <DropDown label="Gramma Division" id="gramaDivision" options={gramaDivisions}/>
-            <TextArea label="Address" id="address"/>
+            <fieldset className="p-3 text-start mb-3">
+                <legend className="fs-5">Address</legend>
+                <InputField label="House Number" id="houseNumber" type="text"/>
+                <InputField label="Street Name" id="streetName" type="text"/>
+                <InputField label="Suburb Area" id="suburb" type="text"/>
+                <InputField label="City" id="city" type="text"/>
+            </fieldset>
+            <TextArea label="Reason" id="reason"/>
             <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-outline-success form-control">
                     Submit

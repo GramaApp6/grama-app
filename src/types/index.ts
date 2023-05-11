@@ -1,5 +1,8 @@
-import {Notification} from './Notification';
+import Notification from './Notification';
+import GramaCertificateRequest from "./GramaCertificateRequest.ts";
 
 export type{
-  Notification
+    Notification,
+    GramaCertificateRequest,
+    Request
 }
