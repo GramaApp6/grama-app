@@ -2,26 +2,38 @@ import React from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {useAuthContext} from "@asgardeo/auth-react";
 
+import './App.css';
+
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
-import StatusPage from "./pages/StatusPage";
+import SentRequestsPage from "./pages/SentRequestsPage.tsx";
 import Page404 from "./pages/Page404";
 import ProfilePage from './pages/ProfilePage';
 
 function App() {
     const {state} = useAuthContext();
+    if (state.isLoading) {
+        return (
+            <div className="vh-100 d-flex justify-content-center align-items-center">
+                <h1 className="text-center text-secondary loading">Loading</h1>
+            </div>
+        );
+    }
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<LandingPage/>}/>
-                {state.isAuthenticated &&
+                {state.isAuthenticated ?
                     <>
-                        <Route path="/home" element={<HomePage/>}/>
+                        <Route path="/" element={<HomePage/>}/>
                         <Route path="/request" element={<RequestPage/>}/>
+
                         <Route path="/status" element={<StatusPage/>}/>
                         <Route path="/profile" element={<ProfilePage/>}/>
+
                     </>
+                    :
+                    <Route path="/" element={<LandingPage/>}/>
                 }
                 <Route path="*" element={<Page404/>}/>
             </Routes>

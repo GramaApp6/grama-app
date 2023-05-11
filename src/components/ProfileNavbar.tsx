@@ -80,6 +80,7 @@ function ProfileNavbar() {
       </div>
     </nav>
   );
+
 }
 
 export default ProfileNavbar;
