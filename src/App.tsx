@@ -61,6 +61,7 @@ function App() {
                         <Route path="/request" element={<RequestPage/>}/>
                         <Route path="/requests" element={<SentRequestsPage/>}/>
                         <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
                     </>
                 ) : (
                     <Route path="/" element={<LandingPage/>}/>
