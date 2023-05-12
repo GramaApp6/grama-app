@@ -15,10 +15,12 @@ function LandingPage() {
             </div>
             <h1>Grama Check</h1>
             <p>Get your documents online</p>
-            <div className="d-flex flex-column p-3 show-only-on-mobile">
-                <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>
-                    Login / Sign Up
-                </button>
+            <div className="show-only-on-mobile">
+                <div className="d-flex flex-column p-3">
+                    <button className="btn btn-outline-success mb-3" onClick={() => signIn()}>
+                        Login / Sign Up
+                    </button>
+                </div>
             </div>
         </div>
     </>);
