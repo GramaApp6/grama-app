@@ -13,6 +13,7 @@ import Page500 from "./pages/Page500.tsx";
 import {UserInfo} from "./types";
 import AdminPage from "./pages/AdminPage";
 import UserDataPage from "./pages/UserDataPage";
+import AdminHomePage from "./pages/AdminHomePage";
 
 function App() {
     const {state, getBasicUserInfo} = useAuthContext();
@@ -64,6 +65,7 @@ function App() {
                         <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/userdata" element={<UserDataPage/>}/>
+                        <Route path="/adminhome" element={<AdminHomePage/>}/>
                     </>
                 ) : (
                     <Route path="/" element={<LandingPage/>}/>
