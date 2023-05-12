@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Table from "react-bootstrap/Table";
 import ProfileNavbar from "../components/ProfileNavbar";
 
 const AdminPage = () => {
@@ -28,7 +27,7 @@ const AdminPage = () => {
             <div className="text-center">
                 <h1>Requests</h1>
             </div>
-            <Table striped bordered hover>
+            <table className="table table-hover table-striped">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -38,24 +37,20 @@ const AdminPage = () => {
                 </thead>
                 <tbody>
                 {data.map((row, index) => (
-                    <a>
-                        <tr key={index}>
-                            <td>{row.name}</td>
-                            <td>{row.status}</td>
-                            <td>
-                                {row.status === "Pending" && (
-                                    <button onClick={() => handleApproveNow(index)}>Approve Now</button>
-                                )}
-                            </td>
-                        </tr>
-                    </a>
+                    <tr key={index}>
+                        <td>{row.name}</td>
+                        <td>{row.status}</td>
+                        <td>
+                            {row.status === "Pending" && (
+                                <button onClick={() => handleApproveNow(index)}>Approve Now</button>
+                            )}
+                        </td>
+                    </tr>
                 ))}
                 </tbody>
-            </Table>
+            </table>
         </div>
     </>);
 };
 
 export default AdminPage;
-
-import Table from "react-bootstrap/Table";
