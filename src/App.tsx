@@ -11,6 +11,7 @@ import SentRequestsPage from "./pages/SentRequestsPage.tsx";
 import Page404 from "./pages/Page404";
 import AdminPage from "./pages/AdminPage";
 import UserDataPage from "./pages/UserDataPage";
+import AdminHomePage from "./pages/AdminHomePage";
 
 function App() {
     const {state} = useAuthContext();
@@ -31,6 +32,7 @@ function App() {
                         <Route path="/requests" element={<SentRequestsPage/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/userdata" element={<UserDataPage/>}/>
+                        <Route path="/adminhome" element={<AdminHomePage/>}/>
                     </>
                     :
                     <Route path="/" element={<LandingPage/>}/>
