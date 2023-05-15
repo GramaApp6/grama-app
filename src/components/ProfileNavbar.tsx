@@ -11,7 +11,7 @@ function ProfileNavbar() {
                 </a>
                 <div className="d-flex">
                     <ul className="list-unstyled me-3">
-                        <li className="nav-item">
+                        <li className="nav-item" style={{height: "20px"}}>
                             <button className=" navbar-toggler nav-link dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                 <i className="fa fa-bell" style={{fontSize: "2rem"}}></i>
