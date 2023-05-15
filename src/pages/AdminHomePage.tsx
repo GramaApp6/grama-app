@@ -8,16 +8,9 @@ function AdminHomePage() {
             <div className="d-flex flex-column flex-lg-row p-3 pt-5">
                <a className="btn btn-outline-success m-3" href="/requests">
                     <div className="home-page-btn">
-                        <i className="fa fa-check-circle m-2" style={{fontSize: "4rem"}}></i>
+                        <i className="fa fa-bars m-2" style={{fontSize: "4rem"}}></i>
                         <br/>
                         Check Requests
-                    </div>
-                </a>
-                <a className="btn btn-outline-success m-3" href="/requests">
-                    <div className="home-page-btn">
-                        <i className="fa fa-check-circle m-2" style={{fontSize: "4rem"}}></i>
-                        <br/>
-                        People Details
                     </div>
                 </a>
                 <button className="btn btn-outline-success m-3">

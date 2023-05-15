@@ -3,16 +3,16 @@ import {BrowserRouter, redirect, Route, Routes} from "react-router-dom";
 import {BasicUserInfo, useAuthContext} from "@asgardeo/auth-react";
 import "./App.css";
 
+import {UserInfo} from "./types";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import RequestPage from "./pages/RequestPage";
-import SentRequestsPage from "./pages/SentRequestsPage.tsx";
+import SentRequestsPage from "./pages/SentRequestsPage";
 import Page404 from "./pages/Page404";
-import ProfilePage from "./pages/ProfilePage.tsx";
-import Page500 from "./pages/Page500.tsx";
-import {UserInfo} from "./types";
-import AdminPage from "./pages/AdminPage";
-import UserDataPage from "./pages/UserDataPage";
+import ProfilePage from "./pages/ProfilePage";
+import Page500 from "./pages/Page500";
+import Requests from "./pages/Requests.tsx";
+import RequestInfo from "./pages/RequestInfo.tsx";
 import AdminHomePage from "./pages/AdminHomePage";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     const [basicUserInfo, setBasicUserInfo] =
         useState<UserInfo>({email: "", name: "", picture: "", role: ""});
 
-    const getRole = (basicUserInfo: BasicUserInfo) =>{
+    const getRole = (basicUserInfo: BasicUserInfo) => {
         if (basicUserInfo.groups && basicUserInfo.groups.includes("admin")) {
             return "admin";
         }
@@ -58,15 +58,21 @@ function App() {
         <BrowserRouter>
             <Routes>
                 {state.isAuthenticated ? (
-                    <>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/request" element={<RequestPage/>}/>
-                        <Route path="/requests" element={<SentRequestsPage/>}/>
-                        <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
-                        <Route path="/admin" element={<AdminPage/>}/>
-                        <Route path="/userdata" element={<UserDataPage/>}/>
-                        <Route path="/adminhome" element={<AdminHomePage/>}/>
-                    </>
+                    basicUserInfo.role === "admin" ? (
+                        <>
+                            <Route path="/" element={<AdminHomePage/>}/>
+                            <Route path="/requests" element={<Requests/>}/>
+                            <Route path="/request/:id" element={<RequestInfo/>}/>
+                            <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
+                        </>
+                    ) : (
+                        <>
+                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/request" element={<RequestPage/>}/>
+                            <Route path="/requests" element={<SentRequestsPage/>}/>
+                            <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
+                        </>
+                    )
                 ) : (
                     <Route path="/" element={<LandingPage/>}/>
                 )}

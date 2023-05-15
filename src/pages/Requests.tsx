@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import ProfileNavbar from "../components/ProfileNavbar";
+import {redirect} from "react-router-dom";
 
-const AdminPage = () => {
+const Requests = () => {
     const [data, setData] = useState([
         {name: "John Doe", status: "Approved"},
         {name: "Jane Doe", status: "Pending"},
@@ -14,12 +15,6 @@ const AdminPage = () => {
         {name: "Alex Johnson", status: "Approved"},
         {name: "Olivia Green", status: "Pending"},
     ]);
-
-    const handleApproveNow = (index: number) => {
-        const newData = [...data];
-        newData[index].status = "Approved";
-        setData(newData);
-    };
 
     return (<>
         <ProfileNavbar/>
@@ -42,7 +37,7 @@ const AdminPage = () => {
                         <td>{row.status}</td>
                         <td>
                             {row.status === "Pending" && (
-                                <button onClick={() => handleApproveNow(index)}>Approve Now</button>
+                                <a href={"/request/"+index} className="btn btn-outline-success">Approve Now</a>
                             )}
                         </td>
                     </tr>
@@ -53,4 +48,4 @@ const AdminPage = () => {
     </>);
 };
 
-export default AdminPage;
+export default Requests;
