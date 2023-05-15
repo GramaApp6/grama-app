@@ -5,7 +5,7 @@ export enum Status{
     FAILED,
     PASSED
 }
-export interface GramaCertificate {
+export interface GramaCertificate extends GramaCertificateRequest{
     reason: string;
     status: Status;
     certificateNumber?: string;

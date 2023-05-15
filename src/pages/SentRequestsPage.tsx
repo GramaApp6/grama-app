@@ -10,40 +10,7 @@ function SentRequestsPage() {
 
     useEffect(() => {
         //TODO: Get requests from backend
-        const data: GramaCertificate[] = [
-            {
-                reason: "Reason 1",
-                status: Status.NEW,
-                requestDate: new Date("2021-08-01"),
-                validationStatus:{
-                    address: Status.PASSED,
-                    police: Status.PASSED,
-                    identity: Status.NEW
-                }
-            },
-            {
-                reason: "Reason 2",
-                status: Status.PASSED,
-                certificateNumber: "123456788",
-                issuedDate: new Date("2022-10-01"),
-                requestDate: new Date("2022-09-01"),
-                validationStatus:{
-                    address: Status.PASSED,
-                    police: Status.PASSED,
-                    identity: Status.NEW
-                }
-            },
-            {
-                reason: "Reason 3",
-                status: Status.FAILED,
-                requestDate: new Date("2023-04-07"),
-                validationStatus:{
-                    address: Status.PASSED,
-                    police: Status.PASSED,
-                    identity: Status.NEW
-                }
-            }
-        ];
+        const data: GramaCertificate[] = [];
         setRequests(data);
 
     }, []);
