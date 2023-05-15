@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface Option {
-    divisionId: string;
+    divisionId: number;
     divisionName: string;
 }
 interface DropDownProps {

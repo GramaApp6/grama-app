@@ -10,20 +10,20 @@ const RequestInfo = () => {
     const { id } = useParams();
     const [request, setRequest] = useState<GramaCertificate>(
         {
+            NIC: "",
             address: {
-                houseNumber: "",
-                streetName: "",
-                suburb: "",
-                city: ""
+                city: "", houseNo: "", streetName: "", suburb: ""
+
             },
             certificateNumber: "",
+            divisionId: 0,
+            email: "",
             firstName: "",
-            gramaDivision: "",
-            issuedDate: undefined,
+            gramaDivision: 0,
+            issuedDate: new Date(),
             lastName: "",
-            mobileNumber: "",
-            nic: "",
-            reason: "",
+            mobileNo: "",
+            purpose: "",
             requestDate: new Date(),
             status: Status.NEW,
             validationStatus: { address: Status.NEW, identity: Status.NEW, police: Status.NEW }

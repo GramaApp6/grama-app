@@ -6,10 +6,10 @@ export enum Status{
     PASSED
 }
 export interface GramaCertificate extends GramaCertificateRequest{
-    reason: string;
     status: Status;
     certificateNumber?: string;
     requestDate: Date;
+    gramaDivision: number;
     issuedDate?: Date;
     validationStatus : {
         identity: Status;
