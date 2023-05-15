@@ -1,8 +1,8 @@
 import React from 'react';
 
 export interface Option {
-    key: string;
-    value: string;
+    divisionId: string;
+    divisionName: string;
 }
 interface DropDownProps {
     label: string;
@@ -15,7 +15,7 @@ function DropDown(props:DropDownProps) {
         <div className="form-floating mb-3">
             <select className="form-select" id={props.id} aria-label="Floating label select example" required={true}>
                 {props.options.map((option) => {
-                    return <option key={option.key} value={option.key}>{option.value}</option>
+                    return <option key={option.divisionId} value={option.divisionId}>{option.divisionName}</option>
                 })}
             </select>
             <label htmlFor={props.id}>{props.label}</label>

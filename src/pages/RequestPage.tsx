@@ -5,18 +5,38 @@ import InputField from "../components/form/InputField.tsx";
 import TextArea from "../components/form/TextArea.tsx";
 import DropDown, {Option} from "../components/form/DropDown.tsx";
 import {GramaCertificateRequest} from "../types";
+import {useAuthContext} from "@asgardeo/auth-react";
 
 
 function RequestPage() {
     const [gramaDivisions, setGramaDivisions] = useState<Option[]>([]);
+    const {httpRequest} = useAuthContext();
+
+    console.log("gramaDivisions", gramaDivisions);
+    const getGramaDivisions = ()  => {
+        httpRequest({
+            headers: {
+                "Accept" : "application/json"
+            },
+            method: "GET",
+            url: "https://c797a448-6b78-43cc-b089-fcc4e8df8937-dev.e1-us-east-azure.choreoapis.dev/yjoh/gramaappbackend/endpoint-9091-6c0/1.0.0/all_grama_divisions",
+            attachToken: true
+        }).then((data) => {
+            setGramaDivisions(data.data);
+        }).catch((err):Option[] => {
+            console.log(err);
+            setGramaDivisions( [
+                {
+                    divisionId: -1,
+                    divisionName: "Cannot Load Grama Divisions"
+                }
+            ]);
+        })
+    }
+
+
     React.useEffect(() => {
-        //TODO: Get grama divisions from backend
-        const data:Option[] = [
-            {key: "1", value: "Grama Division 1"},
-            {key: "2", value: "Grama Division 2"},
-            {key: "3", value: "Grama Division 3"},
-        ];
-        setGramaDivisions(data);
+        getGramaDivisions();
     }, []);
 
 
