@@ -27,27 +27,17 @@ const Requests = () => {
                     <tr  className="my-5">
                         <th scope="col">Name</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                      
                     </tr>
                 </thead>
                 
 
                 <tbody>
                     {data.map((row, index) => (
-                        <tr key={index} className="mt-3 ">
+                        <tr key={index} className="mt-3" onClick={() => { window.location.href = "/request/" + index }} style={{ cursor: 'pointer' }}>
                             <td>{row.name}</td>
                             <td>{row.status}</td>
-                            <td>
-                                {row.status === "Pending" && (
-                                    <a href={"/request/" + index} className="btn btn-outline-success">Approve Now</a>
-                                )}
-                            </td>
-                           
-                            
                         </tr >
-                       
-                      
+
                     ))}
                     
                 </tbody>
