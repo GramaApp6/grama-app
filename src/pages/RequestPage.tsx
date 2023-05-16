@@ -5,46 +5,100 @@ import InputField from "../components/form/InputField.tsx";
 import TextArea from "../components/form/TextArea.tsx";
 import DropDown, {Option} from "../components/form/DropDown.tsx";
 import {GramaCertificateRequest} from "../types";
+import {useAuthContext} from "@asgardeo/auth-react";
+import {url} from "../utils/constants.ts";
+import {errorToast, redirect, reload, successToast} from "../utils/toasts.ts";
+import {ToastContainer} from "react-toastify";
 
 
 function RequestPage() {
     const [gramaDivisions, setGramaDivisions] = useState<Option[]>([]);
+    const {httpRequest} = useAuthContext();
+
+    console.log("gramaDivisions", gramaDivisions);
+    const getGramaDivisions = () => {
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/all_grama_divisions",
+            attachToken: true
+        }).then((data) => {
+            setGramaDivisions(data.data);
+        }).catch((err) => {
+            console.log(err);
+            setGramaDivisions([
+                {
+                    divisionId: -1,
+                    divisionName: "Cannot Load Grama Divisions"
+                }
+            ]);
+        })
+    }
+
+
     React.useEffect(() => {
-        //TODO: Get grama divisions from backend
-        const data:Option[] = [
-            {key: "1", value: "Grama Division 1"},
-            {key: "2", value: "Grama Division 2"},
-            {key: "3", value: "Grama Division 3"},
-        ];
-        setGramaDivisions(data);
+        getGramaDivisions();
     }, []);
 
 
-    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const dataElement = e.target as HTMLFormElement;
-        const data:GramaCertificateRequest = {
+        const data: GramaCertificateRequest = {
             firstName: dataElement.firstName.value,
             lastName: dataElement.lastName.value,
-            nic: dataElement.nic.value,
-            mobileNumber: dataElement.phoneNumber.value,
-            gramaDivision: dataElement.gramaDivision.value,
+            NIC: dataElement.nic.value,
+            mobileNo: dataElement.phoneNumber.value,
+            divisionId: parseInt(dataElement.gramaDivision.value),
+            email: dataElement.email.value,
             address: {
-                houseNumber: dataElement.houseNumber.value,
+                houseNo: dataElement.houseNumber.value,
                 streetName: dataElement.streetName.value,
                 suburb: dataElement.suburb.value,
                 city: dataElement.city.value,
             },
-            reason: dataElement.reason.value
+            purpose: dataElement.reason.value
         }
         //TODO: Send data to backend
         console.log("Submitted", data);
+        httpRequest({
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            url: url + "/grama_certificate_request/register",
+            data: data,
+            attachToken: true
+        }).then((data) => {
+            console.log(data);
+            successToast("Request is submitted");
+            redirect("/");
+        }).catch((err) => {
+            console.error(err);
+            errorToast("Failed to submit the request");
+            reload();
+        })
     };
     return (<>
         <ProfileNavbar/>
+        <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            theme="colored"
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            draggable={false}
+        />
+
         <form className="container mt-5 limit-width" method="post" onSubmit={handleSubmit}>
             <InputField label="First Name" id="firstName" type="text"/>
             <InputField label="Last Name" id="lastName" type="text"/>
+            <InputField label="Email" id="email" type="text"/>
             <InputField label="NIC" id="nic" type="text"/>
             <InputField label="Phone Number" id="phoneNumber" type="tel"/>
             <DropDown label="Gramma Division" id="gramaDivision" options={gramaDivisions}/>
@@ -64,4 +118,5 @@ function RequestPage() {
         </form>
     </>);
 }
+
 export default RequestPage;

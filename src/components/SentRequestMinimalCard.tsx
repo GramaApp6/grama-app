@@ -10,7 +10,7 @@ function SentRequestMinimalCard(props: {details: GramaCertificate}) {
             </div>
             <div className="card-body">
                 <h6 className="card-subtitle mb-2 text-muted">Status: {Status[props.details.status]}</h6>
-                <p className="card-text">Reason: {props.details.reason}</p>
+                <p className="card-text">Reason: {props.details.purpose}</p>
             </div>
         </div>
     );

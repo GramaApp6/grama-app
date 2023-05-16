@@ -61,7 +61,7 @@ function App() {
                     basicUserInfo.role === "admin" ? (
                         <>
                             <Route path="/" element={<AdminHomePage/>}/>
-                            <Route path="/requests" element={<Requests/>}/>
+                            <Route path="/requests" element={<Requests email={basicUserInfo.email}/>}/>
                             <Route path="/request/:id" element={<RequestInfo/>}/>
                             <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
                         </>

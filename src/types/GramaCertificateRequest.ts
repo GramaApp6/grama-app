@@ -1,5 +1,5 @@
 export interface Address{
-    houseNumber: string;
+    houseNo: string;
     streetName: string;
     suburb: string;
     city: string;
@@ -8,9 +8,10 @@ export interface Address{
 export default interface GramaCertificateRequest {
     firstName: string;
     lastName: string;
-    nic: string;
-    mobileNumber: string;
-    gramaDivision: string;
+    NIC: string;
+    mobileNo: string;
+    divisionId: number;
+    email: string;
     address: Address;
-    reason: string;
+    purpose: string;
 }
