@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 import ProfileNavbar from "../components/ProfileNavbar";
 import {GramaCertificate} from "../types";
-import {Status} from "../types/GramaCertificate.ts";
 import SentRequestMinimalCard from "../components/SentRequestMinimalCard.tsx";
 
 function SentRequestsPage() {
@@ -20,8 +19,8 @@ function SentRequestsPage() {
             <ProfileNavbar/>
             <div className="d-flex limit-width flex-column">
                 {
-                    requests.map((request: GramaCertificate, index:number) => (
-                        <SentRequestMinimalCard key={index} details={request} />
+                    requests.map((request: GramaCertificate, index: number) => (
+                        <SentRequestMinimalCard key={index} details={request}/>
                     ))
                 }
             </div>

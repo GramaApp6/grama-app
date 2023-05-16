@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ProfileNavbar from "../components/ProfileNavbar";
 
-import { Address, GramaCertificate } from "../types";
-import { Status } from "../types/GramaCertificate.ts";
-import { getAddressAsString } from "../utils/commonUtils.ts";
-import { useParams } from "react-router-dom";
+import {GramaCertificate} from "../types";
+import {Status} from "../types/GramaCertificate.ts";
+import {useParams} from "react-router-dom";
 
 const RequestInfo = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [request, setRequest] = useState<GramaCertificate>(
         {
             NIC: "",
@@ -26,7 +25,7 @@ const RequestInfo = () => {
             purpose: "",
             requestDate: new Date(),
             status: Status.NEW,
-            validationStatus: { address: Status.NEW, identity: Status.NEW, police: Status.NEW }
+            validationStatus: {address: Status.NEW, identity: Status.NEW, police: Status.NEW}
         }
     );
 
@@ -45,7 +44,7 @@ const RequestInfo = () => {
 
     return (
         <>
-            <ProfileNavbar />
+            <ProfileNavbar/>
             <div className="container">
                 <div className="text-center mt-1 mb-4">
                     <h1>User Details</h1>
@@ -55,18 +54,18 @@ const RequestInfo = () => {
                         <h6 className="card-text">Name:</h6>
                         <h6 className="card-subtitle text-muted">{request?.firstName + " " + request?.lastName}Kumara</h6>
 
-                        <hr className="hr-success" />
+                        <hr className="hr-success"/>
 
                         <h6 className="card-text">NIC:</h6>
                         <h6 className="card-subtitle mb-2 text-muted">{request?.nic}1999</h6>
-                        <hr  className="hr-success"/>
-                        
+                        <hr className="hr-success"/>
+
                         <h6 className="card-text">Address:</h6>
                         <h6 className="card-subtitle mb-2 text-muted">houseNumber</h6>
                         <h6 className="card-subtitle mb-2 text-muted">streetName</h6>
                         <h6 className="card-subtitle mb-2 text-muted">suburb</h6>
 
-                        <hr   className="hr-success"/>
+                        <hr className="hr-success"/>
 
 
                         <h6 className="card-text">
@@ -94,13 +93,14 @@ const RequestInfo = () => {
 
                             <button className="btn btn-outline-primary  ms-5">Check</button>
                         </div>
-                        <hr  className="hr-success"/>
+                        <hr className="hr-success"/>
 
                         <div className="d-flex justify-content-between">
                             <h6 className="card-text my-auto">Set Status:</h6>
 
                             <div className="dropdown">
-                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
 
@@ -111,13 +111,7 @@ const RequestInfo = () => {
                                 </ul>
                             </div>
                         </div>
-
-
-
-
                         <div className="text-center mt-5 ">
-
-
                             <form onSubmit={handleSubmit} className="d-grid gap-2">
                                 {request.status === Status.NEW && (
                                     <button
@@ -126,10 +120,7 @@ const RequestInfo = () => {
                                     >
                                         Submit
                                     </button>
-
                                 )}
-
-
                             </form>
                         </div>
                     </div>
