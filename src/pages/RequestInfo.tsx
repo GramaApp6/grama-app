@@ -1,39 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
+
+import {GramaCertificate} from "../types";
+import {Status} from "../types/GramaCertificate.ts";
 import ProfileNavbar from "../components/ProfileNavbar";
 
-import { Address, GramaCertificate } from "../types";
-import { Status } from "../types/GramaCertificate.ts";
-import { getAddressAsString } from "../utils/commonUtils.ts";
-import { useParams } from "react-router-dom";
-
 const RequestInfo = () => {
-    const { id } = useParams();
+    const location = useLocation();
     const [request, setRequest] = useState<GramaCertificate>(
-        {
-            NIC: "",
-            address: {
-                city: "", houseNo: "", streetName: "", suburb: ""
-
-            },
-            certificateNumber: "",
-            divisionId: 0,
-            email: "",
-            firstName: "",
-            gramaDivision: 0,
-            issuedDate: new Date(),
-            lastName: "",
-            mobileNo: "",
-            purpose: "",
-            requestDate: new Date(),
-            status: Status.NEW,
-            validationStatus: { address: Status.NEW, identity: Status.NEW, police: Status.NEW }
-        }
+        location.state
     );
 
-    useEffect(() => {
-        //TODO: fetch data from backend based on requestID
-        // setRequest();
-    }, [id])
     const handleApprove = () => {
         //TODO:
     };
@@ -45,7 +22,7 @@ const RequestInfo = () => {
 
     return (
         <>
-            <ProfileNavbar />
+            <ProfileNavbar/>
             <div className="container">
                 <div className="text-center mt-1 mb-4">
                     <h1>User Details</h1>
@@ -55,25 +32,25 @@ const RequestInfo = () => {
                         <h6 className="card-text">Name:</h6>
                         <h6 className="card-subtitle text-muted">{request?.firstName + " " + request?.lastName}Kumara</h6>
 
-                        <hr className="hr-success" />
+                        <hr className="hr-success"/>
 
                         <h6 className="card-text">NIC:</h6>
                         <h6 className="card-subtitle mb-2 text-muted">{request?.nic}1999</h6>
-                        <hr  className="hr-success"/>
-                        
-                        <h6 className="card-text">Address:</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">houseNumber</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">streetName</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">suburb</h6>
+                        <hr className="hr-success"/>
 
-                        <hr   className="hr-success"/>
+                        <h6 className="card-text">Address:</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">{request.address.houseNo}</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">{request.address.streetName}</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">{request.address.suburb}</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">{request.address.city}</h6>
+                        <hr className="hr-success"/>
 
 
                         <h6 className="card-text">
                             Check Identity:
                         </h6>
                         <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{Status[request.validationStatus.identity]}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.identity}</h6>
                             <button className="btn btn-outline-primary inline ms-5">Check</button>
                         </div>
 
@@ -81,7 +58,7 @@ const RequestInfo = () => {
                             Check Police:
                         </h6>
                         <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{Status[request.validationStatus.police]}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.police}</h6>
 
                             <button className="btn btn-outline-primary inline ms-5">Check</button>
                         </div>
@@ -90,17 +67,18 @@ const RequestInfo = () => {
                             Check Address:
                         </h6>
                         <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{Status[request.validationStatus.address]}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.address}</h6>
 
                             <button className="btn btn-outline-primary  ms-5">Check</button>
                         </div>
-                        <hr  className="hr-success"/>
+                        <hr className="hr-success"/>
 
                         <div className="d-flex justify-content-between">
                             <h6 className="card-text my-auto">Set Status:</h6>
 
                             <div className="dropdown">
-                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                                   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
 
@@ -111,8 +89,6 @@ const RequestInfo = () => {
                                 </ul>
                             </div>
                         </div>
-
-
 
 
                         <div className="text-center mt-5 ">

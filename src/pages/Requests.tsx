@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import ProfileNavbar from "../components/ProfileNavbar";
 import {useAuthContext} from "@asgardeo/auth-react";
 import {url} from "../utils/constants.ts";
@@ -8,6 +9,7 @@ const Requests = (props: { email: string }) => {
     const [divisionid, setID] = useState(null);
     const [certificates, setCertificates] = useState<GramaCertificate[]>([]);
     const {httpRequest} = useAuthContext();
+    const navigate = useNavigate();
     const getGramaDivisionId = (email) => {
         httpRequest({
             headers: {
@@ -61,9 +63,14 @@ const Requests = (props: { email: string }) => {
                 </thead>
                 <tbody>
                 {certificates.map((certificate, index) => (
-                    <tr key={index} className="mt-3" onClick={() => {
-                        window.location.href = "/request/" + certificate.certificateNumber;
-                    }} style={{cursor: 'pointer'}}>
+                    <tr key={index} className="mt-3"
+                        onClick={() => {
+                            console.log(certificate);
+                            navigate(`/request/${certificate.certificateId}`,  {
+                                state: certificate
+                            })
+                        }}
+                        style={{cursor: 'pointer'}}>
                         <td>{`${certificate.firstName} ${certificate.lastName}`}</td>
                         <td>{certificate.status}</td>
                     </tr>

@@ -7,7 +7,7 @@ export enum Status{
 }
 export interface GramaCertificate extends GramaCertificateRequest{
     status: Status;
-    certificateNumber?: string;
+    certificateId?: string;
     requestDate: Date;
     gramaDivision: number;
     issuedDate?: Date;
