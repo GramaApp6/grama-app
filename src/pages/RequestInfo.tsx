@@ -99,15 +99,15 @@ const RequestInfo = () => {
                         <div className="d-flex justify-content-between">
                             <h6 className="card-text my-auto">Set Status:</h6>
 
-                            <div class="dropdown">
-                                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div className="dropdown">
+                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
                         </div>
