@@ -7,6 +7,8 @@ import DropDown, {Option} from "../components/form/DropDown.tsx";
 import {GramaCertificateRequest} from "../types";
 import {useAuthContext} from "@asgardeo/auth-react";
 import {url} from "../utils/constants.ts";
+import {errorToast, redirect, reload, successToast} from "../utils/toasts.ts";
+import {ToastContainer} from "react-toastify";
 
 
 function RequestPage() {
@@ -68,15 +70,31 @@ function RequestPage() {
             },
             method: "POST",
             url: url + "/grama_certificate_request/register",
+            data: data,
             attachToken: true
         }).then((data) => {
             console.log(data);
+            successToast("Request is submitted");
+            redirect("/");
         }).catch((err) => {
             console.error(err);
+            errorToast("Failed to submit the request");
+            reload();
         })
     };
     return (<>
         <ProfileNavbar/>
+        <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            theme="colored"
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            draggable={false}
+        />
+
         <form className="container mt-5 limit-width" method="post" onSubmit={handleSubmit}>
             <InputField label="First Name" id="firstName" type="text"/>
             <InputField label="Last Name" id="lastName" type="text"/>
