@@ -1,8 +1,8 @@
-import {toast} from "react-toastify";
+import {toast, ToastOptions} from "react-toastify";
 
 const timeOut = 1500;
 
-const options = {
+const options: ToastOptions = {
     toastId: "1", position: "top-right",
     autoClose: timeOut,
     hideProgressBar: false,
@@ -12,19 +12,19 @@ const options = {
     progress: 0,
 };
 
-function successToast(message) {
+function successToast(message: string) {
     toast.success(message, options);
 }
 
-function infoToast(message) {
+function infoToast(message: string) {
     toast.info(message, options);
 }
 
-function errorToast(message) {
+function errorToast(message: string) {
     toast.error(message, options);
 }
 
-function warningToast(message) {
+function warningToast(message: string) {
     toast.warn(message, options);
 }
 
@@ -34,7 +34,7 @@ function reload() {
     }, timeOut);
 }
 
-function redirect(path) {
+function redirect(path:string) {
     setTimeout(() => {
         window.location.href = path;
     }, timeOut);

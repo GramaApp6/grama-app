@@ -19,7 +19,7 @@ const authConfig: AuthReactConfig = {
     ]
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
     <AuthProvider config={authConfig}>
         <App/>
