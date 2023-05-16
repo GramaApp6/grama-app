@@ -19,9 +19,14 @@ function SentRequestsPage() {
             <ProfileNavbar/>
             <div className="d-flex limit-width flex-column">
                 {
+                    requests.length != 0 ?
                     requests.map((request: GramaCertificate, index: number) => (
                         <SentRequestMinimalCard key={index} details={request}/>
                     ))
+                        :
+                        <h6 className="text-secondary">
+                            No Requests Found
+                        </h6>
                 }
             </div>
         </>
