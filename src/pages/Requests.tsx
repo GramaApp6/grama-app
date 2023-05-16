@@ -22,7 +22,7 @@ const Requests = () => {
             <div className="text-center  mt-1 mb-5">
                 <h1>Requests</h1>
             </div>
-            <table className="table table-hover shadow-lg p-3 mb-5 bg-body rounded">
+            <table className="table table-hover shadow-lg p-3 mb-5 bg-body rounded text-start">
                 <thead>
                     <tr  className="my-5">
                         <th scope="col">Name</th>
@@ -35,7 +35,7 @@ const Requests = () => {
 
                 <tbody>
                     {data.map((row, index) => (
-                        <tr key={index} className="mt-3">
+                        <tr key={index} className="mt-3 ">
                             <td>{row.name}</td>
                             <td>{row.status}</td>
                             <td>

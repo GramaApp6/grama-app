@@ -11,15 +11,15 @@ function ProfileNavbar() {
                 </a>
                 <div className="d-flex">
                     <ul className="list-unstyled me-3">
-                        <li className="nav-item" style={{height: "20px"}}>
-                            <button className=" navbar-toggler nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                <i className="fa fa-bell" style={{fontSize: "2rem"}}></i>
+                        <li className="nav-item" style={{ height: "20px" }}>
+                            <button className=" navbar-toggler nav-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i className="fa fa-bell" style={{ fontSize: "2rem" }}></i>
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end">
-                                <Notifications/>
+                                <Notifications />
                                 <li>
-                                    <hr className="dropdown-divider"/>
+                                    <hr className="dropdown-divider" />
                                 </li>
                                 <li>
                                     <a className="dropdown-item" href="/notifications">
@@ -29,7 +29,7 @@ function ProfileNavbar() {
                             </ul>
                         </li>
                     </ul>
-                    <OffCanvas/>
+                    <OffCanvas />
                 </div>
             </div>
         </nav>

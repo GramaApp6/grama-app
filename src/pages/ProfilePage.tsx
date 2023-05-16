@@ -29,19 +29,19 @@ function ProfilePage(props: { userInfo: UserInfo}) {
                     <div className="col-md-auto">
                         <img
                             src={picture}
-                            className="rounded-circle"
+                            className="rounded-circle my-3"
                             width="200" // set the width to 200 pixels
                             height="200" // set the height to 200 pixels
                         />
                     </div>
                 </div>
-                <div className="row mt-3 justify-content-md-center">
+                <div className="row mt-3 justify-content-md-center my-3">
                     <div className="col-md-auto">
                         <h1>{props.userInfo.name}</h1>
                     </div>
                 </div>
-                <ul className="list-group">
-                    <li className="list-group-item">
+                <ul className="list-group text-start ">
+                    <li className="list-group-item shadow-lg p-3 mb-5 bg-body rounded">
                         <div className="row">
                             <div className="col">
                                 <h4 className="text-muted">Full name </h4>
@@ -58,7 +58,7 @@ function ProfilePage(props: { userInfo: UserInfo}) {
                             </div>
                         </div>
                     </li>
-                    <li className="list-group-item">
+                    <li className="list-group-item shadow-lg p-3 mb-5 bg-body rounded">
                         <div className="row">
                             <div className="col">
                                 <h4 className="text-muted">Email </h4>
@@ -75,7 +75,7 @@ function ProfilePage(props: { userInfo: UserInfo}) {
                             </div>
                         </div>
                     </li>
-                    <li className="list-group-item">
+                    <li className="list-group-item shadow-lg p-3 mb-5 bg-body rounded">
                         <div className="row">
                             <div className="col">
                                 <h4 className="text-muted">Role </h4>
