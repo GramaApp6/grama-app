@@ -30,12 +30,12 @@ const RequestInfo = () => {
                 <div className="card text-start shadow-lg p-3 mb-5 bg-body rounded">
                     <div className="card-body">
                         <h6 className="card-text">Name:</h6>
-                        <h6 className="card-subtitle text-muted">{request?.firstName + " " + request?.lastName}Kumara</h6>
+                        <h6 className="card-subtitle text-muted">{request.firstName + " " + request.lastName}</h6>
 
                         <hr className="hr-success"/>
 
                         <h6 className="card-text">NIC:</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request?.nic}1999</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">{request.NIC}</h6>
                         <hr className="hr-success"/>
 
                         <h6 className="card-text">Address:</h6>

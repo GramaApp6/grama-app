@@ -10,7 +10,7 @@ const Requests = (props: { email: string }) => {
     const [certificates, setCertificates] = useState<GramaCertificate[]>([]);
     const {httpRequest} = useAuthContext();
     const navigate = useNavigate();
-    const getGramaDivisionId = (email) => {
+    const getGramaDivisionId = (email: string) => {
         httpRequest({
             headers: {
                 "Accept": "application/json"
@@ -25,7 +25,7 @@ const Requests = (props: { email: string }) => {
             console.log(err);
         })
     }
-    const getGramaDivisionDetails = (divisionid) => {
+    const getGramaDivisionDetails = (divisionid: number) => {
         httpRequest({
             headers: {
                 "Accept": "application/json"
