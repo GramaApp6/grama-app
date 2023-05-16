@@ -13,7 +13,7 @@ import {ToastContainer} from "react-toastify";
 
 function RequestPage() {
     const [gramaDivisions, setGramaDivisions] = useState<Option[]>([]);
-    const {httpRequest} = useAuthContext();
+    const {state, httpRequest} = useAuthContext();
 
     console.log("gramaDivisions", gramaDivisions);
     const getGramaDivisions = () => {
@@ -98,7 +98,7 @@ function RequestPage() {
         <form className="container mt-5 limit-width" method="post" onSubmit={handleSubmit}>
             <InputField label="First Name" id="firstName" type="text"/>
             <InputField label="Last Name" id="lastName" type="text"/>
-            <InputField label="Email" id="email" type="text"/>
+            <InputField label="Email" id="email" type="text" disabled={true} default={state.email}/>
             <InputField label="NIC" id="nic" type="text"/>
             <InputField label="Phone Number" id="phoneNumber" type="tel"/>
             <DropDown label="Gramma Division" id="gramaDivision" options={gramaDivisions}/>

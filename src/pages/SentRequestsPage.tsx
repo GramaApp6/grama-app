@@ -3,16 +3,30 @@ import React, {useEffect, useState} from 'react';
 import ProfileNavbar from "../components/ProfileNavbar";
 import {GramaCertificate} from "../types";
 import SentRequestMinimalCard from "../components/SentRequestMinimalCard.tsx";
+import {useAuthContext} from "@asgardeo/auth-react";
+import {url} from "../utils/constants.ts";
+import {warningToast} from "../utils/toasts.ts";
 
 function SentRequestsPage() {
     const [requests, setRequests] = useState<GramaCertificate[]>([]);
+    const {state, httpRequest} = useAuthContext();
 
     useEffect(() => {
-        //TODO: Get requests from backend
-        const data: GramaCertificate[] = [];
-        setRequests(data);
-
-    }, []);
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/requested_grama_certificates/"+state.email,
+            attachToken: true
+        }).then((data) => {
+            console.log(data);
+            setRequests(data.data);
+        }).catch((err) => {
+            console.log(err);
+            warningToast("Failed to fetch requests");
+        })
+    }, [state]);
 
     return (
         <>

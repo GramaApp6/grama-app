@@ -38,7 +38,6 @@ function App() {
                         role: getRole(response)
                     };
                     setBasicUserInfo(userInfo);
-                    console.log(userInfo);
                 })
                 .catch((error) => {
                     console.error(error);
