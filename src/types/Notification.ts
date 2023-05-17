@@ -1,6 +1,6 @@
 export default interface Notification{
-    id: number;
-    heading: string;
-    description: string;
-    time: Date;
+    _id: number;
+    status: string;
+    userId: string;
+    message: string;
 }
