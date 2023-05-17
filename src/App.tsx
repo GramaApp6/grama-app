@@ -15,6 +15,7 @@ import Requests from "./pages/Requests.tsx";
 import RequestInfo from "./pages/RequestInfo.tsx";
 import AdminHomePage from "./pages/AdminHomePage";
 import {ToastContainer} from "react-toastify";
+import Loading from "./components/Loading.tsx";
 
 function App() {
     const {state, getBasicUserInfo} = useAuthContext();
@@ -49,9 +50,7 @@ function App() {
 
     if (state.isLoading) {
         return (
-            <div className="vh-100 d-flex justify-content-center align-items-center">
-                <h1 className="text-center text-secondary loading">Loading</h1>
-            </div>
+            <Loading/>
         );
     }
     return (<>

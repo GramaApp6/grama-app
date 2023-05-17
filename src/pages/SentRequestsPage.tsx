@@ -24,7 +24,6 @@ function SentRequestsPage() {
             setRequests(data.data);
         }).catch((err) => {
             console.log(err);
-            warningToast("Failed to fetch requests");
         })
     }, [state]);
 
