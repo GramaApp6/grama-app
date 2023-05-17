@@ -33,7 +33,7 @@ const RequestInfo = () => {
         status: "",
         validationStatus: {address: "NEW", identity: "NEW", police: "NEW"}
     });
-
+    const [areButtonsEnabled, setAreButtonsEnabled] = useState(false);
     useEffect(() => {
         httpRequest({
             headers: {
@@ -42,15 +42,27 @@ const RequestInfo = () => {
             method: "GET",
             url: url + "/certificate/" + requestId,
             attachToken: true
-        }).then((data) => {
-            console.log("request befor fetching ", request);
-            const response: GramaCertificate = data.data;
-            console.log("data", response);
-            setRequest(response);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }, [requestId]);
+        })
+            .then((data) => {
+                console.log("request before fetching", request);
+                const response: GramaCertificate = data.data;
+                console.log("data", response);
+                setRequest(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        if (
+            request.validationStatus.address !== "NEW" &&
+            request.validationStatus.identity !== "NEW" &&
+            request.validationStatus.police !== "NEW"
+        ) {
+            setAreButtonsEnabled(true);
+        } else {
+            setAreButtonsEnabled(false);
+        }
+    }, [requestId, request.validationStatus.address, request.validationStatus.identity, request.validationStatus.police]);
 
     const getIdentityCheck = (certificationId: string) => {
         infoToast("Checking identity ...");
@@ -160,6 +172,21 @@ const RequestInfo = () => {
                                          disableButton={request.validationStatus.address != "NEW"}
                                          id={"address"} onClick={() => getAddressCheck(request.certificateId)}/>
                     </div>
+                    <div className="card-footer text-center">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <button className="btn btn-success w-100" disabled={!areButtonsEnabled}>
+                                    Approve
+                                </button>
+                            </div>
+                            <div className="col-md-6">
+                                <button className="btn btn-danger w-100" disabled={!areButtonsEnabled}>
+                                    Reject
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>
