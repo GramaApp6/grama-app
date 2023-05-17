@@ -18,15 +18,17 @@ const Notifications = () => {
     useEffect(() => {
         const fetchNotifications = async () => {
             const user = await getBasicUserInfo()
-            const response = await httpRequest({
-                headers: {
-                    "Accept": "application/json"
-                },
-                method: "GET",
-                url: `https://c797a448-6b78-43cc-b089-fcc4e8df8937-dev.e1-us-east-azure.choreoapis.dev/yjoh/nodehook/node-hook-197/1.0.0/notifications/gastro@wso2.com`,
-                attachToken: true
-            })
-            setNotifications(response.data);
+            if (user.email) {
+                const response = await httpRequest({
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    method: "GET",
+                    url: `https://c797a448-6b78-43cc-b089-fcc4e8df8937-dev.e1-us-east-azure.choreoapis.dev/yjoh/nodehook/node-hook-197/1.0.0/notifications/${user.email}`,
+                    attachToken: true
+                })
+                setNotifications(response.data);
+            }
         };
         // Call once immediately
         fetchNotifications();
