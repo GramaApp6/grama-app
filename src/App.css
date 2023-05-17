@@ -71,3 +71,7 @@ fieldset{
     border: solid 1px #ccc !important;
     border-radius: 5px;
 }
+
+.hover-transform:hover {
+    border: #07bc0c solid 1px;
+}
