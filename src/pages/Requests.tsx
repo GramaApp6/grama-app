@@ -53,8 +53,8 @@ const Requests = (props: { email: string }) => {
 
     return (<>
         <ProfileNavbar/>
-        <div className="container">
-            <div className="text-center mt-2">
+        <div className="container mt-5">
+            <div className="text-center">
                 <h3>Grama Certificate Requests</h3>
             </div>
             <table className="table table-hover shadow-lg bg-body rounded-3 text-start">

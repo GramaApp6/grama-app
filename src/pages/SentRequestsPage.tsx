@@ -30,7 +30,7 @@ function SentRequestsPage() {
     return (
         <>
             <ProfileNavbar/>
-            <div className="d-flex limit-width flex-column">
+            <div className="mt-5 d-flex limit-width flex-column">
                 {
                     requests.length != 0 ?
                     requests.map((request: GramaCertificate, index: number) => (

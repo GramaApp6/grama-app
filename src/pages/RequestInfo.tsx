@@ -131,11 +131,65 @@ const RequestInfo = () => {
         })
     }
 
+    const handleApprove = () => {
+        infoToast("Approving request ...");
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "PUT",
+            url: url + "/status",
+            data: {
+                ... request,
+                "status" : "APPROVED"
+            },
+            attachToken: true
+        }).then((data) => {
+            if (data.status != 200) {
+                errorToast("Request failed");
+                return
+            }
+            const response: GramaCertificate = data.data;
+            console.log(response);
+            setRequest(response);
+        }).catch((err) => {
+            console.log(err);
+            errorToast("Server error");
+        })
+    }
+
+    const handleReject = () => {
+        infoToast("Rejecting request ...");
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "PUT",
+            url: url + "/status",
+            data: {
+                ... request,
+                "status" : "REJECT"
+            },
+            attachToken: true
+        }).then((data) => {
+            if (data.status != 200) {
+                errorToast("Request failed");
+                return
+            }
+            const response: GramaCertificate = data.data;
+            console.log(response);
+            setRequest(response);
+        }).catch((err) => {
+            console.log(err);
+            errorToast("Server error");
+        })
+    }
+
     console.log("request after update", request);
     return (
         <>
             <ProfileNavbar/>
-            <div className="container">
+            <div className="container mt-5">
                 <div className="card text-start shadow-lg p-3 mb-5 bg-body rounded">
                     <div className="card-header text-center">
                         <h3>Request Information</h3>
@@ -172,16 +226,16 @@ const RequestInfo = () => {
                                          disableButton={request.validationStatus.address != "NEW"}
                                          id={"address"} onClick={() => getAddressCheck(request.certificateId)}/>
                     </div>
-                    <div className="card-footer text-center">
+                    <div className="text-center">
                         <div className="row">
-                            <div className="col-md-6">
-                                <button className="btn btn-success w-100" disabled={!areButtonsEnabled}>
-                                    Approve
+                            <div className="col-md-6 mb-3">
+                                <button className="btn btn-success w-100" disabled={!areButtonsEnabled} onClick={handleApprove}>
+                                    <i className="fa fa-check me-3"></i>APPROVE
                                 </button>
                             </div>
-                            <div className="col-md-6">
-                                <button className="btn btn-danger w-100" disabled={!areButtonsEnabled}>
-                                    Reject
+                            <div className="col-md-6 mb-3">
+                                <button className="btn btn-danger w-100" disabled={!areButtonsEnabled} onClick={handleReject}>
+                                    <i className="fa fa-times me-3"></i>REJECT
                                 </button>
                             </div>
                         </div>

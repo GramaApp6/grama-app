@@ -4,7 +4,7 @@ import ProfileNavbar from "../components/ProfileNavbar";
 function HomePage() {
     return (<>
         <ProfileNavbar/>
-        <div className="container justify-content-center">
+        <div className="container mt-5 justify-content-center">
             <div className="d-flex flex-column flex-lg-row p-3 pt-5">
                 <a className="btn btn-outline-success m-3" href="/request">
                     <div className="home-page-btn">

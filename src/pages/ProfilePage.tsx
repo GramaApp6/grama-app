@@ -23,8 +23,7 @@ function ProfilePage(props: { userInfo: UserInfo}) {
     return (
         <>
             <ProfileNavbar/>
-
-            <div className="container">
+            <div className="container mt-5">
                 <div className="row justify-content-md-center mb-3">
                     <div className="col-md-auto">
                         <img
