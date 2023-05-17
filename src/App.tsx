@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {BrowserRouter, redirect, Route, Routes} from "react-router-dom";
+import {BrowserRouter, redirect, Route, Routes, useParams} from "react-router-dom";
 import {BasicUserInfo, useAuthContext} from "@asgardeo/auth-react";
 import "./App.css";
 
@@ -14,6 +14,7 @@ import Page500 from "./pages/Page500";
 import Requests from "./pages/Requests.tsx";
 import RequestInfo from "./pages/RequestInfo.tsx";
 import AdminHomePage from "./pages/AdminHomePage";
+import {ToastContainer} from "react-toastify";
 
 function App() {
     const {state, getBasicUserInfo} = useAuthContext();
@@ -53,32 +54,44 @@ function App() {
             </div>
         );
     }
-    return (
-        <BrowserRouter>
-            <Routes>
-                {state.isAuthenticated ? (
-                    basicUserInfo.role === "admin" ? (
-                        <>
-                            <Route path="/" element={<AdminHomePage/>}/>
-                            <Route path="/requests" element={<Requests email={basicUserInfo.email}/>}/>
-                            <Route path="/request/:id" element={<RequestInfo/>}/>
-                            <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
-                        </>
+    return (<>
+            <ToastContainer
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                theme="colored"
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                draggable={false}
+            />
+            <BrowserRouter>
+                <Routes>
+                    {state.isAuthenticated ? (
+                        basicUserInfo.role === "admin" ? (
+                            <>
+                                <Route path="/" element={<AdminHomePage/>}/>
+                                <Route path="/requests" element={<Requests email={basicUserInfo.email}/>}/>
+                                <Route path="/request/:requestId" element={<RequestInfo/>}/>
+                                <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
+                            </>
+                        ) : (
+                            <>
+                                <Route path="/" element={<HomePage/>}/>
+                                <Route path="/request" element={<RequestPage/>}/>
+                                <Route path="/requests" element={<SentRequestsPage/>}/>
+                                <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
+                            </>
+                        )
                     ) : (
-                        <>
-                            <Route path="/" element={<HomePage/>}/>
-                            <Route path="/request" element={<RequestPage/>}/>
-                            <Route path="/requests" element={<SentRequestsPage/>}/>
-                            <Route path="/profile" element={<ProfilePage userInfo={basicUserInfo}/>}/>
-                        </>
-                    )
-                ) : (
-                    <Route path="/" element={<LandingPage/>}/>
-                )}
-                <Route path="/error" element={<Page500/>}/>
-                <Route path="*" element={<Page404/>}/>
-            </Routes>
-        </BrowserRouter>
+                        <Route path="/" element={<LandingPage/>}/>
+                    )}
+                    <Route path="/error" element={<Page500/>}/>
+                    <Route path="*" element={<Page404/>}/>
+                </Routes>
+            </BrowserRouter>
+        </>
+
     );
 }
 

@@ -1,180 +1,164 @@
-import React, {useState} from "react";
-import {useLocation} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
 import {GramaCertificate} from "../types";
-import {Status} from "../types/GramaCertificate.ts";
-import ProfileNavbar from "../components/ProfileNavbar";
 import {url} from "../utils/constants";
 import {useAuthContext} from "@asgardeo/auth-react";
+import InputField from "../components/form/InputField.tsx";
+import InputWithButton from "../components/form/InputWithButton.tsx";
+import {errorToast, infoToast} from "../utils/toasts.ts";
+import ProfileNavbar from "../components/ProfileNavbar.tsx";
 
 const RequestInfo = () => {
-    const[Addressdata,setAddress]=useState<GramaCertificate[]>([]);
-    const[PoliceData,setPolice]=useState<GramaCertificate[]>([]);
-    const [isIdentityChecked, setIsIdentityChecked] = useState(false);
-    const [isPoliceChecked, setIsPoliceChecked] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isAddressChecked, setIsAddressChecked] = useState(false);
-    const location = useLocation();
+    const {requestId} = useParams();
     const {httpRequest} = useAuthContext();
-    const [request, setRequest] = useState<GramaCertificate>(
-        location.state
-    );
-    const getIdentityCheck = (certificationId: string) => {
-        console.log("certificationId", certificationId);
+    const [request, setRequest] = useState<GramaCertificate>({
+        NIC: "",
+        address: {
+            houseNo: "",
+            city: "",
+            suburb: "",
+            streetName: "",
+        },
+        certificateId: "",
+        divisionId: 0,
+        email: "",
+        firstName: "",
+        gramaDivision: 0,
+        issuedDate: new Date(),
+        lastName: "",
+        mobileNo: "",
+        purpose: "",
+        requestDate: new Date(),
+        status: "",
+        validationStatus: {address: "NEW", identity: "NEW", police: "NEW"}
+    });
+
+    useEffect(() => {
         httpRequest({
             headers: {
                 "Accept": "application/json"
             },
             method: "GET",
-            url: url + "/verify/" + certificationId+"?verifyType=ID",
+            url: url + "/certificate/" + requestId,
             attachToken: true
         }).then((data) => {
-            console.log(data.data);
-            setRequest(data.data)
-            //setID(data.data);
+            console.log("request befor fetching ", request);
+            const response: GramaCertificate = data.data;
+            console.log("data", response);
+            setRequest(response);
         }).catch((err) => {
             console.log(err);
+        });
+    }, [requestId]);
+
+    const getIdentityCheck = (certificationId: string) => {
+        infoToast("Checking identity ...");
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/verify/" + certificationId + "?verifyType=ID",
+            attachToken: true
+        }).then((data) => {
+            if (data.status != 200) {
+                errorToast("Request failed");
+                return
+            }
+            const response: GramaCertificate = data.data;
+            console.log(response);
+            setRequest(response);
+        }).catch((err) => {
+            console.log(err);
+            errorToast("Server error");
         })
     }
     const getAddressCheck = (certificationId: string) => {
+        infoToast("checking address validity ...")
         httpRequest({
             headers: {
                 "Accept": "application/json"
             },
             method: "GET",
-            url: url + "/verify/" + certificationId+"?verifyType=ADDRESS",
+            url: url + "/verify/" + certificationId + "?verifyType=ADDRESS",
             attachToken: true
         }).then((data) => {
-            console.log(data.data);
-            setRequest(data.data);
+            if (data.status != 200) {
+                errorToast("Request failed");
+                return
+            }
+            const response: GramaCertificate = data.data;
+            console.log(response);
+            setRequest(response);
         }).catch((err) => {
             console.log(err);
+            errorToast("Server error");
         })
     }
     const getPoliceCheck = (certificationId: string) => {
+        infoToast("Checking police report ...")
         httpRequest({
             headers: {
                 "Accept": "application/json"
             },
             method: "GET",
-            url: url + "/verify/" + certificationId+"?verifyType=POLICE",
+            url: url + "/verify/" + certificationId + "?verifyType=POLICE",
             attachToken: true
         }).then((data) => {
-            console.log(data.data);
-            setRequest(data.data);
+            if (data.status != 200) {
+                errorToast("Request failed");
+                return
+            }
+            const response: GramaCertificate = data.data;
+            console.log(response);
+            setRequest(response);
         }).catch((err) => {
             console.log(err);
+            errorToast("Server error");
         })
     }
 
-    const handleCheckIdentity = () => {
-        // TODO: Perform identity check
-        setIsIdentityChecked(true);
-    };
-
-    const handleCheckPolice = () => {
-        // TODO: Perform police check
-        setIsPoliceChecked(true);
-    };
-
-    const handleCheckAddress = () => {
-        // TODO: Handle form submission
-        setIsAddressChecked(true);
-    };
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // handle form submission
-    };
-
+    console.log("request after update", request);
     return (
         <>
             <ProfileNavbar/>
             <div className="container">
-                <div className="text-center mt-1 mb-4">
-                    <h1>User Details</h1>
-                </div>
                 <div className="card text-start shadow-lg p-3 mb-5 bg-body rounded">
+                    <div className="card-header text-center">
+                        <h3>Request Information</h3>
+                    </div>
                     <div className="card-body">
-                        <h6 className="card-text">Name:</h6>
-                        <h6 className="card-subtitle text-muted">{request.firstName + " " + request.lastName}</h6>
-
-                        <hr className="hr-success"/>
-
-                        <h6 className="card-text">NIC:</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request.NIC}</h6>
-                        <hr className="hr-success"/>
-
-                        <h6 className="card-text">Address:</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request.address.houseNo}</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request.address.streetName}</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request.address.suburb}</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">{request.address.city}</h6>
-                        <hr className="hr-success"/>
-
-
-                        <h6 className="card-text">
-                            Check Identity:
-                        </h6>
-                        <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.identity}</h6>
-                            <button className="btn btn-outline-primary inline ms-5" onClick={() => getIdentityCheck(request.certificateId)}>Check
-                            </button>
-                        </div>
-
-                        <h6 className="card-text">
-                            Check Police:
-                        </h6>
-                        <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.police}</h6>
-
-                            <button className="btn btn-outline-primary inline ms-5" onClick={() => getPoliceCheck(request.certificateId)}>Check
-                            </button>
-                        </div>
-
-                        <h6 className="card-text ">
-                            Check Address:
-                        </h6>
-                        <div className="d-flex justify-content-between mb-3">
-                            <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.address}</h6>
-
-                            <button className="btn btn-outline-primary  ms-5"
-                                    onClick={() => getAddressCheck(request.certificateId)}
-                            >Check
-                            </button>
-                        </div>
-                        <hr className="hr-success"/>
-
-                        <div className="d-flex justify-content-between">
-                            <h6 className="card-text my-auto">Set Status:</h6>
-
-                            <div className="dropdown">
-                                <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button"
-                                   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                        <div className="text-center mt-5 ">
-                            <form onSubmit={handleSubmit} className="d-grid gap-2">
-                                {request.validationStatus.status === Status.PASSED && (
-                                    <button
-                                        className="btn btn-lg btn-success"
-                                        onClick={handleSubmit}
-                                        disabled={isSubmitted}
-                                    >
-                                        Submit
-                                    </button>
-                                )}
-                            </form>
-                        </div>
+                        <InputField label="First Name: " id="firstName" type="text" disabled={true}
+                                    default={request.firstName}/>
+                        <InputField label="last Name: " id="lastName" type="text" disabled={true}
+                                    default={request.lastName}/>
+                        <InputField label="NIC: " id="nic" type="text" disabled={true}
+                                    default={request.NIC}/>
+                        <fieldset className="p-3 text-start mb-3">
+                            <legend className="fs-5">Address</legend>
+                            <InputField label="House Number" id="houseNumber" type="text" disabled={true}
+                                        default={request.address.houseNo}/>
+                            <InputField label="Street Name" id="streetName" type="text" disabled={true}
+                                        default={request.address.streetName}/>
+                            <InputField label="Suburb Area" id="suburb" type="text" disabled={true}
+                                        default={request.address.suburb}/>
+                            <InputField label="City" id="city" type="text" disabled={true}
+                                        default={request.address.city}/>
+                        </fieldset>
+                        <InputWithButton label={"Check Identity"} value={request.validationStatus.identity}
+                                         disabled={true}
+                                         disableButton={request.validationStatus.identity != "NEW"}
+                                         id={"identity"} onClick={() => getIdentityCheck(request.certificateId)}/>
+                        <InputWithButton label={"Check Police Report"}
+                                         value={request.validationStatus.police}
+                                         disabled={true}
+                                         disableButton={request.validationStatus.police != "NEW"}
+                                         id={"police"} onClick={() => getPoliceCheck(request.certificateId)}/>
+                        <InputWithButton label={"Check Address"} value={request.validationStatus.address}
+                                         disabled={true}
+                                         disableButton={request.validationStatus.address != "NEW"}
+                                         id={"address"} onClick={() => getAddressCheck(request.certificateId)}/>
                     </div>
                 </div>
             </div>

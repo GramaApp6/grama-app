@@ -84,17 +84,6 @@ function RequestPage() {
     };
     return (<>
         <ProfileNavbar/>
-        <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            theme="colored"
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            draggable={false}
-        />
-
         <form className="container mt-5 limit-width" method="post" onSubmit={handleSubmit}>
             <InputField label="First Name" id="firstName" type="text"/>
             <InputField label="Last Name" id="lastName" type="text"/>

@@ -65,7 +65,7 @@ const Requests = (props: { email: string }) => {
                 {certificates.map((certificate, index) => (
                     <tr key={index} className="mt-3"
                         onClick={() => {
-                            console.log(certificate);
+                            console.log("navigating form requests",certificate);
                             navigate(`/request/${certificate.certificateId}`,  {
                                 state: certificate
                             })
