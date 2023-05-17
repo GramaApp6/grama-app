@@ -1,21 +1,87 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useLocation} from "react-router-dom";
 
 import {GramaCertificate} from "../types";
 import {Status} from "../types/GramaCertificate.ts";
 import ProfileNavbar from "../components/ProfileNavbar";
+import {url} from "../utils/constants";
+import {useAuthContext} from "@asgardeo/auth-react";
 
 const RequestInfo = () => {
+    const[Addressdata,setAddress]=useState<GramaCertificate[]>([]);
+    const[PoliceData,setPolice]=useState<GramaCertificate[]>([]);
+    const [isIdentityChecked, setIsIdentityChecked] = useState(false);
+    const [isPoliceChecked, setIsPoliceChecked] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isAddressChecked, setIsAddressChecked] = useState(false);
     const location = useLocation();
+    const {httpRequest} = useAuthContext();
     const [request, setRequest] = useState<GramaCertificate>(
         location.state
     );
+    const getIdentityCheck = (certificationId: string) => {
+        console.log("certificationId", certificationId);
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/verify/" + certificationId+"?verifyType=ID",
+            attachToken: true
+        }).then((data) => {
+            console.log(data.data);
+            setRequest(data.data)
+            //setID(data.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+    const getAddressCheck = (certificationId: string) => {
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/verify/" + certificationId+"?verifyType=ADDRESS",
+            attachToken: true
+        }).then((data) => {
+            console.log(data.data);
+            setRequest(data.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+    const getPoliceCheck = (certificationId: string) => {
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+            url: url + "/verify/" + certificationId+"?verifyType=POLICE",
+            attachToken: true
+        }).then((data) => {
+            console.log(data.data);
+            setRequest(data.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
-    const handleApprove = () => {
-        //TODO:
+    const handleCheckIdentity = () => {
+        // TODO: Perform identity check
+        setIsIdentityChecked(true);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleCheckPolice = () => {
+        // TODO: Perform police check
+        setIsPoliceChecked(true);
+    };
+
+    const handleCheckAddress = () => {
+        // TODO: Handle form submission
+        setIsAddressChecked(true);
+    };
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // handle form submission
     };
@@ -51,7 +117,8 @@ const RequestInfo = () => {
                         </h6>
                         <div className="d-flex justify-content-between mb-3">
                             <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.identity}</h6>
-                            <button className="btn btn-outline-primary inline ms-5">Check</button>
+                            <button className="btn btn-outline-primary inline ms-5" onClick={() => getIdentityCheck(request.certificateId)}>Check
+                            </button>
                         </div>
 
                         <h6 className="card-text">
@@ -60,7 +127,8 @@ const RequestInfo = () => {
                         <div className="d-flex justify-content-between mb-3">
                             <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.police}</h6>
 
-                            <button className="btn btn-outline-primary inline ms-5">Check</button>
+                            <button className="btn btn-outline-primary inline ms-5" onClick={() => getPoliceCheck(request.certificateId)}>Check
+                            </button>
                         </div>
 
                         <h6 className="card-text ">
@@ -69,7 +137,10 @@ const RequestInfo = () => {
                         <div className="d-flex justify-content-between mb-3">
                             <h6 className="card-subtitle mb-2 text-muted  my-auto">{request.validationStatus.address}</h6>
 
-                            <button className="btn btn-outline-primary  ms-5">Check</button>
+                            <button className="btn btn-outline-primary  ms-5"
+                                    onClick={() => getAddressCheck(request.certificateId)}
+                            >Check
+                            </button>
                         </div>
                         <hr className="hr-success"/>
 
@@ -93,10 +164,11 @@ const RequestInfo = () => {
 
                         <div className="text-center mt-5 ">
                             <form onSubmit={handleSubmit} className="d-grid gap-2">
-                                {request.status === Status.NEW && (
+                                {request.validationStatus.status === Status.PASSED && (
                                     <button
                                         className="btn btn-lg btn-success"
-                                        onClick={handleApprove}
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitted}
                                     >
                                         Submit
                                     </button>
