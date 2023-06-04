@@ -3,6 +3,7 @@ import {useAuthContext} from "@asgardeo/auth-react";
 
 import {Notification} from "../types";
 import NotificationDropDownEntry from "./NotificationDropDownEntry.tsx";
+import {node_hook_url} from "../utils/constants.ts";
 
 const Notifications = () => {
     const {httpRequest, getBasicUserInfo} = useAuthContext();
@@ -16,7 +17,7 @@ const Notifications = () => {
                         "Accept": "application/json"
                     },
                     method: "GET",
-                    url: `https://c797a448-6b78-43cc-b089-fcc4e8df8937-dev.e1-us-east-azure.choreoapis.dev/yjoh/nodehook/node-hook-197/1.0.0/notifications/${user.email}`,
+                    url:`${node_hook_url}/notifications/${user.email}`,
                     attachToken: true
                 })
                 setNotifications(response.data);

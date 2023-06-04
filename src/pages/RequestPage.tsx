@@ -8,7 +8,6 @@ import {GramaCertificateRequest} from "../types";
 import {useAuthContext} from "@asgardeo/auth-react";
 import {url} from "../utils/constants.ts";
 import {errorToast, redirect, reload, successToast} from "../utils/toasts.ts";
-import {ToastContainer} from "react-toastify";
 
 
 function RequestPage() {
@@ -61,7 +60,6 @@ function RequestPage() {
             },
             purpose: dataElement.reason.value
         }
-        //TODO: Send data to backend
         console.log("Submitted", data);
         httpRequest({
             headers: {
