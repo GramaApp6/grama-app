@@ -18,14 +18,6 @@ function ProfileNavbar() {
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end">
                                 <Notifications />
-                                <li>
-                                    <hr className="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="/notifications">
-                                        Show all notifications
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                     </ul>
