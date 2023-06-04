@@ -7,14 +7,6 @@ import NotificationDropDownEntry from "./NotificationDropDownEntry.tsx";
 const Notifications = () => {
     const {httpRequest, getBasicUserInfo} = useAuthContext();
     const [notifications, setNotifications] = useState<Notification[]>([]);
-    // const notifications : Notification[] = [
-    //     {
-    //         id: 1,
-    //         heading: "Heading 1",
-    //         description: "Description 1",
-    //         time: new Date()
-    //     }
-    // ]
     useEffect(() => {
         const fetchNotifications = async () => {
             const user = await getBasicUserInfo()
