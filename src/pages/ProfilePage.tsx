@@ -20,6 +20,8 @@ function ProfilePage(props: { userInfo: UserInfo}) {
         });
     }, [props.userInfo]);
 
+    const isAdmin = props.userInfo.role === 'admin';
+    
     return (
         <>
             <ProfileNavbar/>
@@ -92,6 +94,18 @@ function ProfilePage(props: { userInfo: UserInfo}) {
                         </div>
                     </li>
                 </ul>
+                {isAdmin && (
+                    <button className="btn btn-outline-success">
+                    <a
+                        className="nav-link active"
+                        aria-current="page"
+                        href="https://myaccount.asgardeo.io/t/nimsara66/personal-info"
+                        target="_blank"
+                    >
+                        Edit Profile
+                    </a>
+                    </button>
+                )}
             </div>
         </>
     );
