@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
 import {GramaCertificate} from "../types";
-import {url} from "../utils/constants";
+import {node_hook_url, url} from "../utils/constants";
 import {useAuthContext} from "@asgardeo/auth-react";
 import InputField from "../components/form/InputField.tsx";
 import InputWithButton from "../components/form/InputWithButton.tsx";
-import {errorToast, infoToast} from "../utils/toasts.ts";
+import {errorToast, infoToast, successToast} from "../utils/toasts.ts";
 import ProfileNavbar from "../components/ProfileNavbar.tsx";
 
 const RequestInfo = () => {
@@ -131,6 +131,26 @@ const RequestInfo = () => {
         })
     }
 
+    const sendSMS = (status:string) => {
+        httpRequest({
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "POST",
+            url: node_hook_url + "/completion",
+            data: {
+                "message": `Grama Cert Request ${status}. Check on: https://grama-check-6.netlify.app/requests`,
+                "to": request.mobileNo
+            }
+        }).then((data) => {
+            console.log(data);
+            successToast("SMS sent to the applicant");
+        }).catch((err) => {
+            console.log(err);
+            errorToast("SMS sending failed");
+        });
+    }
+
     const handleApprove = () => {
         infoToast("Approving request ...");
         httpRequest({
@@ -152,6 +172,7 @@ const RequestInfo = () => {
             const response: GramaCertificate = data.data;
             console.log(response);
             setRequest(response);
+            sendSMS("Approved");
         }).catch((err) => {
             console.log(err);
             errorToast("Server error");
@@ -179,6 +200,7 @@ const RequestInfo = () => {
             const response: GramaCertificate = data.data;
             console.log(response);
             setRequest(response);
+            sendSMS("Rejected");
         }).catch((err) => {
             console.log(err);
             errorToast("Server error");
