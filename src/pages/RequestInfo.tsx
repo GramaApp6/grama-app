@@ -57,7 +57,8 @@ const RequestInfo = () => {
         if (
             request.validationStatus.address !== "NEW" &&
             request.validationStatus.identity !== "NEW" &&
-            request.validationStatus.police !== "NEW"
+            request.validationStatus.police !== "NEW" &&
+            request.status === "PENDING"
         ) {
             setAreButtonsEnabled(true);
         } else {
