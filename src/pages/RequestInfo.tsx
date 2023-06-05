@@ -8,6 +8,7 @@ import InputField from "../components/form/InputField.tsx";
 import InputWithButton from "../components/form/InputWithButton.tsx";
 import {errorToast, infoToast, successToast} from "../utils/toasts.ts";
 import ProfileNavbar from "../components/ProfileNavbar.tsx";
+import TextArea from "../components/form/TextArea.tsx";
 
 const RequestInfo = () => {
     const {requestId} = useParams();
@@ -247,6 +248,7 @@ const RequestInfo = () => {
                                          disabled={true}
                                          disableButton={request.validationStatus.address != "NEW"}
                                          id={"address"} onClick={() => getAddressCheck(request.certificateId)}/>
+                        <TextArea id={"reason"} label={"Reason"} disabled={true} defaultValue={request.purpose}/>
                     </div>
                     <div className="text-center">
                         <div className="row">
